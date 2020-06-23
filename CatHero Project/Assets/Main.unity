@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff46c41c81178340bb49acf048247c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMin: 0
-  xMax: 0
+  xMin: 1
+  xMax: 40
   yMin: 0
   yMax: 0
 --- !u!20 &519420031
@@ -191,7 +191,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.099548
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12714,7 +12714,7 @@ GameObject:
   - component: {fileID: 1940352060}
   - component: {fileID: 1940352059}
   - component: {fileID: 1940352056}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
