@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class player_move_test : MonoBehaviour
 {
+    public Animator animator;
     public int playerSpeed = 6;
     private bool facingRIght = true;
     public int playerJumpPower = 500;
@@ -22,7 +23,10 @@ public class player_move_test : MonoBehaviour
     {
     
         //CONTROLS
-        MoveX = Input.GetAxis("Horizontal");
+        MoveX = Input.GetAxis("Horizontal") * playerSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(MoveX));
+        
         if(Input.GetButtonDown ("Jump"))
         {
             Jump();
@@ -38,7 +42,7 @@ public class player_move_test : MonoBehaviour
             FlipPlayer();
         }
         //PHYSICS
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (MoveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (MoveX, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     void Jump()
