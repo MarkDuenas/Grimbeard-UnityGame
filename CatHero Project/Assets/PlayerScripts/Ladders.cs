@@ -20,17 +20,17 @@ public class Ladders : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player" && Input.GetKey (KeyCode.UpArrow))
+        if (other.tag == "Player" && Input.GetKey(KeyCode.W))
         {
-            other.GetComponent<Rigidbody2D> ().velocity = new Vector2(0, speed);
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
         }
-        else if (other.tag == "Player" && Input.GetKey (KeyCode.DownArrow))
+        else if (other.tag == "Player" && Input.GetKey (KeyCode.S))
         {
-            other.GetComponent<Rigidbody2D> ().velocity = new Vector2(0, -speed);
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
         }
         else
         {
-            other.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0,1);
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         }
 
     }
