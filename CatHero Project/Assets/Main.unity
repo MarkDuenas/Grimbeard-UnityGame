@@ -160,9 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff46c41c81178340bb49acf048247c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMin: 1.5
+  xMin: 1.53
   xMax: 232
-  yMin: 0
+  yMin: 0.2
   yMax: 30
 --- !u!20 &519420031
 Camera:
@@ -191,7 +191,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.099548
+  orthographic size: 5.1213694
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -653,7 +653,7 @@ RectTransform:
   m_Children:
   - {fileID: 1794406285}
   - {fileID: 2134276059}
-  m_Father: {fileID: 791867004}
+  m_Father: {fileID: 2061968075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -17228,7 +17228,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 791867004}
+  - {fileID: 1413941216}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
