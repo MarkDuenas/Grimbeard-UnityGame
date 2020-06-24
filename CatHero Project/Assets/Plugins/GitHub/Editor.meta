@@ -1,9 +1,17 @@
 fileFormatVersion: 2
 guid: cad92998c5182496e8b989b406d9f156
 folderAsset: yes
+<<<<<<< HEAD
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
 timeCreated: 1503666365
 licenseType: Pro
 DefaultImporter:
   userData:
   assetBundleName:
   assetBundleVariant:
+>>>>>>> MarkNewMoveScript
