@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
 
+
     public Animator animator;
     public float playerSpeed = 40f;
     private bool facingRIght = true;
@@ -13,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
 
     bool jump = false;
 
+    void Start() {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("IsJumping", true);
         }
+        
     }
 
     public void OnLanding()
@@ -34,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
         controller.Move(MoveX*Time.fixedDeltaTime, false, jump);
         jump = false;
     }
