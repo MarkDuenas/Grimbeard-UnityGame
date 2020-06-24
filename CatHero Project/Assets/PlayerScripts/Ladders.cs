@@ -30,7 +30,7 @@ public class Ladders : MonoBehaviour
         }
         else
         {
-            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, other.GetComponent<Rigidbody2D>().gravityScale/5);
         }
 
     }
