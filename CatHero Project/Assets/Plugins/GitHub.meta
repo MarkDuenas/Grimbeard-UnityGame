@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 18e096a98c2704c40a818dd1214cd179
+=======
+guid: 7a730df42a9255c4081a0fd49ad302eb
+>>>>>>> MarkNewMoveScript
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
