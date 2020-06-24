@@ -29,5 +29,9 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         animator.SetTrigger("Damaged");
+            if(currentHealth <= 0)
+            {
+                FindObjectOfType<AudioManager>().Play("PlayerDeath");
+            }
     }
 }

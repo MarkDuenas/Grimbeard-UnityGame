@@ -1092,12 +1092,22 @@ MonoBehaviour:
   sounds:
   - name: IntroMusic
     clip: {fileID: 8300000, guid: 10b1afc58fe183a48b92deb909c83f21, type: 3}
-    volume: 0.16
+    volume: 0.12
     pitch: 1
     source: {fileID: 0}
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 0e340a9d1dd6e374faafd533d5cc0145, type: 3}
-    volume: 0.16
+    volume: 0.12
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 7b2ef35d482bbeb4cb9a6be04f50ded0, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: AxeSwing
+    clip: {fileID: 8300000, guid: 4c1cee02ca17bf7408d81b4aa40c0100, type: 3}
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
 --- !u!1 &1533951359
