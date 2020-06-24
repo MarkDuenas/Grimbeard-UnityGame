@@ -1,0 +1,1427 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b173b14a0c1b54abb5999c0fe2102b, type: 3}
+  m_Name: ManualSettings
+  m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: 00eae7324934567439f81c46fd190ad4, type: 2}
+  allowEditMode: 0
+  stringArray:
+  - "   Greetings! This is K-Pathfinder. A tool to generate navigation mesh in a grid
+    pattern and some additional data. And possibly navigate your stuff through it.
+    It was designed with goal in mind to use it in procedural shooter-like world.
+    It's provided \"as is\" and i take no responsibility if it break something or
+    if you lose something.  \r\n\r\n\r\nFeatures:\r\n \u2022 Open source (though it's
+    hard to read and lacking comments)\r\n \u2022 NavMesh for multiple Agent settings
+    at same time\n \u2022 Generate navmesh in runtime\r\n \u2022 Partial Update of
+    NavMesh\n \u2022 Areas with different move cost. \n \u2022 Areas can be readed
+    from Unity terrain splat map\r\n \u2022 Different passability for Agents. Current
+    is \"walking\" and \"crouching\" \r\n \u2022 Covers. Low and high\r\n \u2022 Predefined
+    quick samples. For providing bunch of world space points wich can be reachable
+    from target position\r\n \u2022 Jump spots to move up and down (object to change)\n
+    \u2022 Navmesh Raycasting\r\n \u2022 Search using Layers\n \u2022 Local Cost Modifiers"
+  - 
+  - 
+  - This is basic information about agent. It contain only essential information for
+    navmesh generation.
+  - This is most important information how navmesh should be generated
+  - This is information about movement
+  - This is information how covers should be generated
+  - This is information about samples
+  - 'Agent Properties is scriptable object. It define agent archetype. With amost
+    every action with PathFinder you need this object. When navmesh generated it serves
+    as instruction how to generate navmesh. Or when navmesh already generated it serves
+    as key to tell which navmesh should be used.
+
+
+    Button to create agent properties are located in "Window / K-PathFinder / Create
+    Agent Properties".'
+  - You can edit it by using Unity Inspector, all options have some tooltips.
+  - "<b>Radius:</b> Aproximated agent radisus. I advice to set it slightly larger
+    than actual agent.\n\n<b>Height:</b> Agent height in Unity units. Anything below
+    this number will be considered as \"Not Walkable\" in navmesh generation. Although
+    Agent can have second height for \"crouching\". More on that in Movement tab\n\n<b>Max
+    slope:</b> Maximum slope in degrees agent can handle. \n\n<b>Step height:</b>
+    Maximum step agent can handle.\n\n<b>Included Layers:</b> Physical Unity layers
+    that included into navmesh generation. By default it only contains \"Default\"
+    layer. So if anything was excluded from generation that in other layers and you
+    expect opposite then add layer to included layers mask.\n\n<b>Ignored Tags:</b>
+    Tags that excluded from generation. You can add something by tag to that list
+    and it will be ignored in navmesh generation. If \"Use Hierarchy Tag\" enabled
+    then PathFinder will check all upper hierarchy of added objects. So for example
+    if you add gameobject with \"Armor\" to player then it still will be ignored cause
+    it's parent have \"Player\" tag."
+  - <b>Voxel Bleed Distance:</b> How far voxels should consider ajaisent information.
+    For example there is 2 objects. One is normal and one is "Not Walkable". In left
+    example agent have bigger bleed distance. So even if not passable voxels was over
+    passable it still take their information because height difference inside this
+    threshhold.
+  - 'This is done to solve cases when you have small patches of obstacles that going
+    through normal navmesh. They are too small to be considered as real obstacle but
+    agent will move around them anyway. On the opposite side you might want to mark
+    some areas as "Not Walkable" with GameObjects and this feature will be in your
+    way.
+
+    It also works with some extent while dealing with different Areas. Although it
+    rarely have big effect in that case.
+
+
+    <b>Voxel Per Chunk Side:</b> NavMesh are build from voxels. And PathFinder build
+    navmesh in chunks. This number tells how much voxels should be per chunk side.
+    This value specify resolution of initial data for NavMesh generation.
+
+    <b>Voxel Size:</b> Size if single voxel in Unity units.
+
+    <b>Voxel Per Radius:</b> How much voxels can fit in agent Radius. For best results
+    agent radius should be dividable by voxel size. I advice to have 2-4 voxels per
+    agent radius. Too big number not really nesessary and too small will lead to incorrect
+    results.'
+  - '<b>Do NavMesh:</b> Obvoisly enables navmesh generation. This is a thing because
+    PathFinder can generate more than NavMesh. And potentialy you might not want navmesh
+    itself.
+
+
+    <b>Walk Cost Modifier:</b> With this number equal to 1 on navmesh with moving
+    cost 1 final cost will be equal to distance. This value to balance moving cost
+    between different agents. For example you want compare results for path cost in
+    2 different agents but one can be genualy slower by this number.
+
+
+    <b>Can Crouch:</b> Agent can have additional navmesh parts that generated for
+    smaller height. '
+  - 'In this case Path over this NavMesh will have different flag
+
+    <b>Crouch Height:</b> Crouch area will be generated between this number and agent
+    actual height.
+
+    <b>Crouch Cost Modifyer:</b> Cost modifyer for crouching. If number is higher
+    than walk cost then agent will avoid crouhing over this area. There is option
+    to search path ignoring crouch cost so i dont advice to just make it equal to
+    walk cost.
+
+
+    <b>Can Jump:</b> PathFinder can generate rough jump connections over obstacles'
+  - 'Jump Up is yellow, Jump Down is blue.
+
+    <b>Max Jump Up/Down Distance:</b> How far agent allowed to jump in different directions.
+    Presumable distance for jumping down should be bigger.
+
+    <b>Jump Up/Down Cost:</b> Cost of jumping. So agent will avoid unnesesary jumps.'
+  - <b>Can Cover:</b>PathFinder have automatic cover generation. If it enabled then
+    PathFinder will generate cover. Cover generation is far from perfect but still
+    can be userful to aproximate nearby geometry
+  - '<b>Cover Full:</b>Height that should cover agent fully
+
+    <b>Can Half-Cover:</b>If this option enabled then additional data will be generated
+    for smaller covers
+
+    <b>Cover Half:</b>Height that should cover agent when it crouch behind it
+
+    <b>Cover Extra Samples:</b>How much extra voxels per agent radius pathfinder should
+    consider in cover generation. With 0 covers might have "gaps" and too big number
+    will generate covers far off on their borders'
+  - If sample points enabled for generation then while navmesh generated some voxel
+    samples will be taken as userful data. Samples contain information like passability
+    and Area in that point. They are userful to qiuckly test nearby accessable space.
+  - Agent is way to get you started with PathFinder. Using Agent is not mandatory
+    and it is not optimal solution for every situation but it is default way of doing
+    stuff in PathFinder.
+  - "Queries is main way to extract userful information from NavMesh in PathFinder.
+    \nAll queries derived from <b>NavMeshQueryAbstract<ResultType></b> which have:\n\n<color=blue><i>ResultType
+    threadSafeResult</i>\r</color> public value for result that can be accessed in
+    Unity main thread\n\n<color=blue><i>SetOnFinishedDelegate(Action<ResultType> onFinishDelegate,
+    AgentDelegateMode mode = AgentDelegateMode.NotThreadSafe)</i>\r</color> function
+    to add callbacks when query done work. callbacks can be 2 types: \n\u2022 <b>AgentDelegateMode.ThreadSafe</b>
+    called when result returned to main thread\n\u2022 <b>AgentDelegateMode.NotThreadSafe</b>
+    called as soon as query finish it execution\n\n<color=blue><i>RemoveOnFinishedDelegate(AgentDelegateMode
+    mode = AgentDelegateMode.NotThreadSafe)</i>\r</color> to remove callback\n<color=blue><i>SetMaxExecutionTimeInMilliseconds(int
+    maxExecutionTimeInMilliseconds = 5)</i>\r</color> to set max execution time for
+    query\n"
+  - "Main query for extracting path in PathFinder at this moment. To perform search
+    for path you should do:\n\n<b>1) Create Query</b>\nUse the constructor. It reqire
+    2 arguments:\n\u2022 AgentProperties to specify what navmesh it should be used\n\u2022
+    IPathOwner this value gived to Path when it finished. When path dont have any
+    points left it return <color=blue><i>Vector3 pathFallbackPosition { get; }</i>\r</color>
+    fallback position that interface provide"
+  - "\rAt this moment it perform 5 things:\n \u2022 Wrapper for <b>NavMeshPathQueryGeneric</b>
+    which is current way of searching path over navmesh from point A to point B\n
+    \u2022 Wrapper for <b>Path</b> which is result for path query\n \u2022 Wrapper
+    for <b>NavMeshPointQuery<NodeCoverPoint></b> query for searching covers in proximity\n
+    \u2022 Wrapper for <b>NavMeshPointQuery<CellSamplePoint></b> query for searching
+    navmesh samples\n \u2022 Wrapper for <b>LocalAvoidanceAgent</b> agent that avoid
+    other agents and navmesh\nIt will also initialize all this things to simplify
+    some code\n\nThis things expect to have:\n<b>Agent Properties</b> Agent always
+    expect to have it. This is information about which navmesh should be used\n<b>Layer
+    Mask</b> to describe which navmesh layers should be used\n<b>Modifier Mask</b>
+    to describe which cost modifiers should be used to modify cost for queries"
+  - "Agent have whole bunch of functions to help navigate simple agents over navmesh:\n\n<color=blue><i>AgentProperties
+    properties {get; set;}</i>\r</color> accessor to agent properties. You can init
+    agent and it's queries just by setting AgentProperties to this acessor. If you
+    creating Agent from code then set it properties first\n<color=blue><i>virtual
+    Vector3 positionVector3 {get;}</i>\r</color> accessor to get agent position. This
+    accessor used when requesting data from default queries. You can overload this
+    accessor to set different input to default queries\n<color=blue><i>virtual Vector2
+    positionVector2 {get;}</i>\r</color> accessor to get 2d agent position. It returns
+    (x, z) position of agents. Not (x, y)\n<color=blue><i>List<PointQueryResult<NodeCoverPoint>>
+    covers {get;}</i>\r</color> result of default cover query\n<color=blue><i>List<PointQueryResult<CellSamplePoint>>
+    sampledPoints {get;}</i>\r</color> result of default sample query\n\n<b><size=20>Requesting
+    Information</size></b>\n\n<b>SetGoalMoveHere</b> This is function to request Path
+    from PathFinder. It have big list of arguments:\n\u2022 <color=blue><i>Vector3
+    start</i>\r</color>: Start position for searching Path. This is optional argiment
+    nd there is version that takes current Agent position\n\u2022 <color=blue><i>Vector3
+    destination</i>\r</color>: Target position for searching path\n\u2022 <color=blue><i>int
+    layerMask</i>\r</color>: You can specify mask for searching on navmesh. this is
+    optional argument. if you dont intrested in layered search you can set it to 1
+    in this case only default layer will be included\n\u2022 <color=blue><i>int costModifierMask</i>\r</color>:
+    You can specify mask for cost modifiers. this is optional argument. this is way
+    to offset navmesh cost by external values \n\u2022 <color=blue><i>BestFitOptions
+    bestFitSearch</i>\r</color>: Control what query should do if it did not find suitable
+    path\n\u2022 <color=blue><i>bool applyRaycast</i>\r</color>: Result can potentialy
+    have unnecessary waypoints. If this option enabled then path query will attempt
+    to simplify result by using navmesh raycasting. It cost some perfomance but noticeable
+    improves result\n\u2022 <color=blue><i>bool collectPathContent</i>\r</color>:
+    If enabled then path query will collect external information from navmesh when
+    generation path over it\n\u2022 <color=blue><i>bool ignoreCrouchCost</i>\r</color>:
+    If enabled then it will ignore cost for crouching. Use this when your agent switch
+    it state to constant crouching\n\n<b>SetGoalGetSamplePoints</b> This is function
+    to request samples from PathFinder. It have big list of arguments:\n\u2022 <color=blue><i>float
+    maxCost</i>\r</color>: Max navmesh distance query should search for data. Huge
+    numbers will impact perfomance.\n\u2022 <color=blue><i>int layerMask</i>\r</color>:
+    You can specify mask for searching on navmesh. this is optional argument. if you
+    dont intrested in layered search you can set it to 1 in this case only default
+    layer will be included\n\u2022 <color=blue><i>int costModifierMask</i>\r</color>:
+    You can specify mask for cost modifiers. this is optional argument. this is way
+    to offset navmesh cost by external values \n\u2022 <color=blue><i>bool richCost</i>\r</color>:
+    result have aproximated navmesh cost. If it is true then cost for result will
+    be calculated in more precise way. I recomend to enable it if you expect large
+    amount of results over small area. And disable if you dont need precission while
+    searching over big area\n\u2022 <color=blue><i>bool ignoreCrouchCost</i>\r</color>:
+    If enabled then it will ignore cost for crouching. Use this when your agent switch
+    it state to constant crouching\n\u2022 <color=blue><i>params Vector3[] positions</i>\r</color>:
+    Optional arguments to search from multiple positions at same time. If you use
+    overload with that argument agent own position wount be included there\n \n<b>SetGoalFindCover</b>
+    This is function to request covers information from PathFinder. It very simmilar
+    to sample points and overall same thing. It have big list of arguments:\n\u2022
+    <color=blue><i>float maxCost</i></color>: Max navmesh distance query should search
+    for data. Huge numbers will impact perfomance.\n\u2022 <color=blue><i>int layerMask</i></color>:
+    You can specify mask for searching on navmesh. this is optional argument. if you
+    dont intrested in layered search you can set it to 1 in this case only default
+    layer will be included\n\u2022 <color=blue><i>int costModifierMask</i></color>:
+    You can specify mask for cost modifiers. this is optional argument. this is way
+    to offset navmesh cost by external values \n\u2022 <color=blue><i>bool richCost</i></color>:
+    result have aproximated navmesh cost. If it is true then cost for result will
+    be calculated in more precise way. I recomend to enable it if you expect large
+    amount of results over small area. And disable if you dont need precission while
+    searching over big area\n\u2022 <color=blue><i>bool ignoreCrouchCost</i></color>:
+    If enabled then it will ignore cost for crouching. Use this when your agent switch
+    it state to constant crouching\n\n<b><size=20>Path</size></b>\n<color=blue><i>Path
+    path {get;}</i></color> accessor to Path from path query\n<color=blue><i>bool
+    haveNextNode {get;}</i></color> return if there left nodes in path. return false
+    if path null or count > 0. Handy to check if there any waypoints remain in path\n<color=blue><i>PathNode
+    nextNode {get;}</i></color> return next node that left in path. If there is no
+    nodes left in path it returns agent position with Invalid state\n<color=blue><i>Vector3
+    nextNodeDirectionVector3 {get;}</i></color> return (next node position - agent
+    position)\n<color=blue><i>Vector2 nextNodeDirectionVector2 {get;}</i></color>
+    return (next node position - agent position) on (x, z) axis\n<color=blue><i>virtual
+    Vector3 pathFallbackPosition {get;}</i></color> implementation of IPathOwner.
+    This position will be returned if path fail to return next node. in default implementation
+    it returns transform.position\n<color=blue><i>bool MovableDistanceLesserThan(float
+    targetDistance, out float distance, out PathNode node, out bool reachLastPoint)</i></color>
+    Check distance of next nodes and returns if movable distance less than target
+    distance. This is easy way to check if there Jump node along the way. It have
+    multiple overloads with different outputs\n\n<color=blue><i>bool RemoveNextNode(bool
+    retainLastNode = false)</i></color> function to shift index of next node in Path.
+    Use it when next node are close enough. return true when node was removed. if
+    <color=blue>retainLastNode</color> then it never remove last node. Have multiple
+    variations:\n<color=blue><i>bool RemoveNextNodeIfCloserSqr(float sqrDistance,
+    bool retainLastNode = false)</i></color> Check squared distance to next node from
+    agent position and removes it if it closer than target value\n<color=blue><i>bool
+    RemoveNextNodeIfCloser(float distance, bool retainLastNode = false)</i></color>
+    Do same thing but sqr value for you\n<color=blue><i>bool RemoveNextNodeIfCloserSqrVector2(float
+    sqrDistance, bool retainLastNode = false)</i></color> Check squared distance to
+    next node from agent position and removes it if it closer than target value. Uses
+    (x, z) axis\n<color=blue><i>bool RemoveNextNodeIfCloserVector2(float distance,
+    bool retainLastNode = false)</i></color> Do same thing but sqr value for you\n<color=blue><i>bool
+    RemoveNextNodeIfCloserThanRadius(bool retainLastNode = false)</i></color> Checks
+    if next node closer than agent radius and removes it if it is. Quick and dirty
+    way to make agent remove next node\n<color=blue><i>bool RemoveNextNodeIfCloserThanRadiusVector2(bool
+    retainLastNode = false)</i></color> Do same thing but uses (x, z) axis\n\n<b><size=20>Callbacks</size></b>\nAll
+    this functions have as input AgentDelegateMode. Read about it in Queries/Overview\n<color=blue><i>SetRecievePathDelegate(Action<Path>
+    pathDelegate)</i></color> Sets delegate for path query\n<color=blue><i>RemoveRecievePathDelegate()</i></color>
+    removes delegate in path query\n\n<color=blue><i>SetRecieveSampleDelegate(Action<List<PointQueryResult<CellSamplePoint>>>
+    gridDelegate)</i></color> Sets delegate for samples query\n<color=blue><i>RemoveRecieveSampleDelegate()</i></color>
+    removes delegate in path query\n\n<color=blue><i>SetRecieveCoverDelegate(Action<List<PointQueryResult<NodeCoverPoint>>>
+    coverDelegate)</i></color> Sets delegate for cover query\n<color=blue><i>RemoveRecieveCoverDelegate()</i></color>
+    removes delegate in cover query"
+  - Main Menu is main control panel for PathFinder. You can find it in Window/K-PathFinder/Menu
+  - In this menu toy can build and save navmesh, change settings for generation and
+    debug navmesh
+  - This tab is main controls for building and saving navmesh. All buttons here can
+    be called from code.
+  - '<b>Properties</b> Current target properties this menu interacting with. '
+  - <b><size=20>Build Area Sellector</size></b>
+  - "In PathFinder navmesh generates in chunks. You can call from code \"make navmesh
+    from here to there\" but you also can sellect target chunks for navmesh generation
+    using this sellector. \nYou can ajust size of sellector by pulling pins on it
+    sides. It only sellect chunks to no \"half chunks\". Or you can move it around
+    using central quad. Up and downarrow purely aesthetic and don't participate in
+    anything besides moving sellector up and down.\nSellector values are measured
+    in \"Chunks\".\n\n<b>Start</b> Chunk position where sellector start.\n\n<b>Size</b>
+    How much chunks sellected in given positive direction.\n\n<b>Move</b> Snaps sellector
+    to cursor if it far off screen.\n\n<b>Reset</b> Reset sellector to [Start X:0,
+    Z:0][Size X:1, Z:1]"
+  - "<b><size=20>NavMesh Building</size></b>\n\n<b>Build</b>: Build button are obvious.
+    It will build NavMesh in sellected area when you press it.\nTo use this button
+    from code use there is bunch of ways:\r\n\nWill queue NavMesh in sellected area:\r\n\u2022
+    <color=blue><i>PathFinder.QueueGraph(Vector2 worldTopPosition, AgentProperties
+    properties)</i>\r</color>\n\u2022 <color=blue><i>PathFinder.QueueGraph(Vector3
+    worldPosition, AgentProperties properties)</i>\r</color>\n\u2022 <color=blue><i>PathFinder.QueueGraph(int
+    x, int z, AgentProperties properties, int sizeX = 1, int sizeZ = 1)</i>\r</color>\n\u2022
+    <color=blue><i>PathFinder.QueueGraph(XZPosInt pos, AgentProperties properties)</i>\r</color>\n\u2022
+    <color=blue><i>PathFinder.QueueGraph(XZPosInt pos, XZPosInt size, AgentProperties
+    properties)</i>\r</color>\n\u2022 <color=blue><i>PathFinder.QueueGraph(Vector2
+    startTop, Vector2 endTop, AgentProperties properties)</i>\r</color>\n\u2022 <color=blue><i>PathFinder.QueueGraph(Vector3
+    start, Vector3 end, AgentProperties properties)</i>\r</color>\n\u2022 <color=blue><i>PathFinder.QueueGraph(Bounds
+    bounds, AgentProperties properties)</i></color> Put here target bounds in world
+    space and it will queue all chunks it overlap\n\n<b>Remove</b>: Removes NavMesh
+    targeted by area selector. If checkbox next to it are enabled then after removing
+    PathFinder will queue removed chunks again and redo them.\r\nTo use this button
+    from code use:\n\u2022 <color=blue><i>PathFinder.RemoveGraph(GeneralXZData data,
+    bool createNewGraphAfter = true)</i></color>\n\u2022 <color=blue><i>PathFinder.RemoveGraph(XZPosInt
+    pos, AgentProperties properties, bool createNewGraphAfter = true)</i></color>\n\u2022
+    <color=blue><i>PathFinder.RemoveGraph(int x, int z, AgentProperties properties,
+    int sizeX = 1, int sizeZ = 1, bool createNewGraphAfter = true)</i></color>\n\u2022
+    <color=blue><i>PathFinder.RemoveGraph(Bounds bounds, AgentProperties properties,
+    bool createNewGraphAfter = true)</i></color>\n\u2022 <color=blue><i>PathFinder.RemoveGraph(AgentProperties
+    properties, bool createNewGraphAfter = true, params Bounds[] bounds)</i></color>\n\nInput
+    are in chunk position. There is also a version with Bounds which will convert
+    bound position to chunk position and use these values as input. \r\n\r\n<b>Clear</b>:
+    Will remove all existed NavMesh and stop all existed work.\nTo use this button
+    from code use <color=blue><i>PathFinder.ClearAll()</i></color>"
+  - "<b><size=20>NavMesh Saving</size></b>\n\r\n By default serialization implemented
+    by storing SerializedNavmesh in SceneNavmeshData:ScriptableObject. When you attempt
+    to save current navmesh this scriptable object will be created. \r\n\r\nYour Serialization
+    buttons.\r\n<b>Save</b>: If you press this button then if your scene dont have
+    SceneNavmeshData associated with it then PathFinder suggest you to create one
+    and put all current NavMesh inside it. To use this from code use <color=blue><i>PathFinder.SaveCurrentSceneData()</i>\r</color>\n<b>Load</b>:
+    Are obviously try to load SceneNavmeshData in current scene you can use it from
+    code use <color=blue><i>PathFinder.LoadCurrentSceneData()</i></color> but it will
+    done automatically anyway while PathFinder are starting up.\r\n<b>Delete</b>:
+    Will delete all data inside current SceneNavmeshData. Also, if you want to delete
+    some particular layer of NavMesh then you can select SceneNavmeshData associated
+    with current scene and press Remove button near undesired AgentProperties."
+  - 
+  - "<b>Helper name</b>: In order PathFinder to work it needs to use Unity API. After
+    you start using PathFinder it will create object to use Unity API in scene and
+    you can specify its name here. Along with runing Unity API this GameObject will
+    store SceneNavmeshData. For example if you copying scene then you can just put
+    here copy SceneNavmeshData from another scene.\n\r\n<b>Multithread</b>: Enabled
+    by default. Putted here entirely for debugging. Cause debugging threads is pain.
+    If disabled then all navmesh generating code will be executed in main thread.\n\r\n<b>Max
+    threads</b>: Obviously control the maximum amount of active threads. But actially
+    you can control it in code using <color=blue><i>PathFinder.SetMaxThreads(int value)</i></color>.
+    When scene starting and you want to build NavMesh as quickly as possible you can
+    put here big enough number. But when you want your silky smooth FPS then you tune
+    down maximum threads and PC wont struggle to create all you throw at PathFinder.\r\n\r\nOptions
+    to control method of rasterization:\r\n<b>Terrain collection</b>\r\n<b>Collider
+    collection</b>\r\nInitialy navmesh generate lots of voxels to generate NavMesh
+    later on. Here you can define prefered method. All of them have pros and cons.\r\nBouth
+    have CPU version and ComputeShader version. \r\nCPU are slower but dont go outside
+    given thread so it's good when you want to have smooth FPS.\r\nComputeShader are
+    very faster and use GPU to get this data. But moving data back and forth from
+    GPU are slow. And there is pretty big data. When you make small amount of chunks
+    it will be superfast but you will have FPS drops if you start generate big.\r\n\r\n<b>World
+    grid size</b>: This number will tell how big your NavMesh chunks in world space.
+    Default is 10 but it might be a bit small. Good chunk size depends on your world
+    size, around 20-50 chunks per world side is a good number. Too big chunks will
+    take too long time to update and too small will take long time to create in row
+    and will also lead to bad pathfinding. So if you want some optimisation this is
+    probably where you should start.\n\r\n<b>Chunk max/min height</b>: Just a crutch
+    for Unity. When NavMesh are generated it stored inside Chunk. And Chunk are describe
+    where PathFinder should to check for colliders. And when Chunk are generated this
+    values will tell PathFinder from where it should start boxcasting and where should
+    stop boxcasting to get Chunk size. Numbers here are in chunk size. I have no clue
+    how big your world are so just enter here right numbers if navmesh not generated
+    at target height.\r\n   Actualy, this options doesn't normally exist cause normally
+    NavMesh built in one go. If this were applicable to PathFinder then it simply
+    check all colliders and watch where bounds for all of them. But i cant do this
+    if there bazillion colliders in scene cause it need to be checked for every chunk
+    in every NavMesh generation in that chunk."
+  - <b><size=20>Area Editor</size></b>
+  - "Navigation can have different cost. Somewhere is normal area and Agent will navigate
+    there with normal time, somewhere is road and Agent will navigate there with half
+    of time and somewhere is swamp and it should avoid this area. In PathFinder this
+    spatial divisions called \"Area\". In this menu edited global library of Areas.\n\n<b>Color</b>
+    Graphical definition of Area. When navmesh debuged it will have this color.\n\n<b>Cost</b>
+    Presumable this is amount of time Agent should spend while moving on this Area.
+    \n\n<b>Priority</b> This value control how different areas layer on top of each
+    others. You can real about this in \"Properties/Voxel/Voxel Bleed Distance\" \n\n0
+    and 1 are reserved. PathFinder always should have default walkable and default
+    unwalkable areas."
+  - <b><size=20>Tag Association</size></b>
+  - "Here you specify default Area for target Tag. Cause adding AreaGameObject can
+    be painful to large number of objects. Userful if you want to quickly make all
+    your furniture Not Walkable by default. \r\nIf \"Use Root Tag\" enabled then for
+    chosing area will be sellected topmost parrent of gameObject. Userful if you organizing
+    your scene using gameObjects as folders. So for example all forks, spoons and
+    dishes became unwalkable if whey parented to table."
+  - <b><size=20>Layer Editor</size></b>
+  - PathFinder have ability to perform "Layered" operations. It work very much like
+    Unity Physics. You specify for some part of navmesh it's layer and include or
+    exclude it into some operation. Here you control naming fpr layers. Although right
+    now you can use layers without naming them and it does not realy change anything.
+    But keep in mind that first 8 indexes are reserved.
+  - <b><size=20>PathFinder thread log</size></b>
+  - Basic way to monitor how PathFinder main thread is doing. If something went really
+    wrong some of "Success" will be "Failure" and this will tell where all bad stuff
+    happen. Or maybe PathFinder have nothing done yet since this is simply flags "is
+    you reach this part of code"
+  - <b><size=20>Important checkboxes</size></b>
+  - "<b>Do debug</b> If true then while generating some basic debug will be done.
+    In this case PathFinder will collect to debuger navmes, connections, covers, etc
+    so it can be visible. All things that can in some way be userful for Agent. This
+    option controls collection of this information. So if you enable it in checkboxes
+    below but dont actualy allow collecting of this information it will not append.
+    \n\n<b>Full debug</b> Enables collection of <i>a lot more heavy</i> debug. In
+    this case all individual voxels and their connections and all intermediate information
+    will be collected and avaiable for debug. This will quickly eat lots of memory.
+    Used for troubleshoot navmesh generation step by step.\n\n<b>Do profiler</b> If
+    true PathFinder will also collect time that take for chunks to be generated. It
+    will append in Console like that:"
+  - 'It have timestamps when something happen. Also it contain all important information
+    what participate in navmesh generation and reasons why anything was excluded from
+    generation.
+
+
+    <b>Content Map </b> PathFinder have internal way to store information with bounding
+    boxes. It this enabled it will show where it stored. By default it include "Trees"
+    and "Area Modifiers".'
+  - You can locate this component in PathFinder/Components/AreaCameObject.cs
+  - This object changes Area of target GameObject regardles other settings. It only
+    changes to Area from global Area list.
+  - 'You can locate it in <i>PathFinder/Components/AreaWorldMod.cs</i>
+
+    Or you can create empty gameObject with this component using <i>Window/K-PathFinder/Create
+    Area Moifier</i>
+
+
+    This is quite multi-purpose object.
+
+    Main purpose of this object is Area marker. It marks some space using some gizmos
+    shapes. Shapes list are at the bottom.'
+  - 'At this moment you can add Cube, Sphere and Capsule.
+
+    Removing or rearranging is through context menu buttons. If you click on object
+    in that menu it will be highlited in scene.
+
+
+    At marked with shapes area right now it can perform 4 things:'
+  - '<b>Solid</b> In this case it will be much like normal GameObject. Though there
+    is no actual GameObject. Userful in combination with other stuff. Cause for example
+    it still generate covers. So you can fix cover generation using it that way for
+    example.
+
+
+    <b>Modify Area</b> Changes in target space voxels to match sellected Area. It
+    actualy should overlap where voxels are.
+
+
+    <b>Make Hole Apply Area</b> Makes hole in solid mesh for navigation and change
+    new voxels to sellected Area. Userful if for example you have destructible environment.
+    Or if you just want to say "Here is hole. I''m sure." It dont actualy make hole.
+    Just convince PathFinder that here is hole.
+
+
+    <b>Make Hole Retain Area</b> Make hole in solid mesh but take Area above removed
+    space.
+
+
+    <b><size=20>Area Options</size></b>
+
+    It have 2 modes:
+
+    Use Advanced Area = false'
+  - 'In this mode it do everything described above using Areas from global Area List.
+
+
+    Use Advanced Area = true'
+  - "Enabling Advanced Area opens up some options. In this case Area Modifier generates
+    it's own Area. And this Area collects NavMesh that was used in it generation.
+    This make it avaiable to further changes.\n\n<b>Layer</b> In PathFinder you can
+    perform layered search. More on that in \"Features and Limitations/Layers\". Inside
+    Inspector you can change default Layer for this particular space.\n\nRelated functions:\n<color=blue><i>SetCellsState(bool
+    canBeUsed)</i>\r</color> Exist to support old API. If true: changes Layer to \"Default\".
+    If false: to \"Ignore\"\n<color=blue><i>SetCellsState(bool canBeUsed, params AgentProperties[]
+    targets)</i>\r</color> Do same thing but you can sellect AgentProperties it affects\n<color=blue><i>SetCellsLayer(int
+    targetLayer)</i>\r</color> Set to target zone target Layer by it's index in Layer
+    Editor.\n<color=blue><i>SetCellsLayer(int targetLayer, params AgentProperties[]
+    targets)</i>\r</color> Do same thing but you can sellect AgentProperties it affects\n\n<b>Cell
+    Path Content</b> This is not listed in Inspector and only avaiable through code.
+    PathFinder can register some user defined data inside NavMesh. And this data will
+    be avaiable in generated Path. More on that in \"Features and Limitations/Cell
+    Path Content\"\n\nFunctions to add:\n<color=blue><i>AddCellPathContent(CellPathContentAbstract
+    value)</i>\r</color>\n<color=blue><i>AddCellPathContent(IEnumerable<CellPathContentAbstract>
+    values)</i>\r</color>\n<color=blue><i>AddCellPathContent(params CellPathContentAbstract[]
+    values)</i>\r</color>\n\nFunctions to remove:\n<color=blue><i>RemoveCellPathContent(CellPathContentAbstract
+    value)</i>\r</color>\n<color=blue><i>RemoveCellPathContent(IEnumerable<CellPathContentAbstract>
+    values)</i>\r</color>\n<color=blue><i>RemoveCellPathContent(params CellPathContentAbstract[]
+    values)</i>\r</color>\n"
+  - "It can be used to achive opposite effect - to lure agent to some space. In this
+    case cost should be negative. This is userful if for example you need to avoid
+    throwed grenade. Or space out some agents. Or joint paths together.\n\n\nYou dont
+    actualy need component itself. You can create <b>DeltaCostValue</b> through code
+    and use:\n<color=blue><i>PathFinder.AddDeltaCostValue(DeltaCostValue value)</i>\r</color>
+    To add this value\n<color=blue><i>PathFinder.RemoveDeltaCostValue(DeltaCostValue
+    value)</i>\r</color> To remove this value\nAlthough this feature will probably
+    be changed multiple times while PathFinder being developed and using component
+    is adviced since it probably wount breaks much between updates"
+  - 'Layers used to include or exclude NavMesh parts from some operations. You can
+    selectively ignore some parts of NavMesh during navigation or searching.
+
+
+    <b><size=20>How to create Layer</size></b>
+
+    To create new Layer open PathFinder manu and navigate to Settings tab.
+
+    You can assign name of layer to any index from 8 to 31.'
+  - "To enable Local Avoidance set checkbox <b>Dynamic Obstacle Agent</b> or use\n<color=blue><i>PathFinderAgent.velocityObstacle</i>\r</color>
+    after you set AgentProperties. After that will be avaiable bunch of options:\n\n<b>Max
+    Neighbors</b> Maximum number of neighbors that avoided. Will be chosen nearest
+    agents possible. \nUse <color=blue><i>PathFinderAgent.maxNeighbors</i>\r</color>
+    to edit this value from code.\n\n<b>Max Neighbor Distance</b> Maximum distance
+    to any neighbor affect this Agent. If neighbor is further than this number then
+    it will not be added to neighbor list.\nUse <color=blue><i>PathFinderAgent.maxNeighbourDistance</i>\r</color>
+    to edit this value from code.\n\n<b>Max Velocity</b> Agent maximum velocity that
+    available for evasion. For better effect set it to agent max velocity. For example
+    if agent can run but it's walk most of the time you should set this value to agent
+    runing speed. Cause it directly affect agenet avaiable space for velocity change.
+    More space - more possible results.\nUse <color=blue><i>PathFinderAgent.maxAgentVelocity</i>\r</color>
+    to edit this value from code.\n\n<b>Avoidance Responsibility</b> Agent have different
+    responsibility for evasion. For example one agent can take 90% of responsibility
+    and other 10%. This value is normalised for every agent pair. So for example if
+    one agent have 0.3 and other 0.1 then it is equal to 75% and 25% of responsibility.
+    Responsibility is how much from delta-velocity will be taken to nearest point
+    on collision cone\nUse <color=blue><i>PathFinderAgent.avoidanceResponsibility</i>\r</color>
+    to edit this value from code.\n\n<b>Care Distance</b> In this local avoidance
+    implementation collision cones are \"truncated\" so agent dont avoid other agent
+    as soon as it append in it neighbour list. When agents near each other it will
+    be more smooth transiction to evade it neighbour. This option define where collision
+    cone truncated in normalised disnace to this agent. Don't set this value outside
+    0.01-0.99 range or will be bugs. When value is 0.01 agent will be evaded by other
+    agents as soon as possible. When value is 0.99 then this agent will be ignored
+    by other agents until the end. \nUse <color=blue><i>PathFinderAgent.careDistance</i>\r</color>
+    to edit this value from code.\n\n<b>Deadlock Fail-Safe</b> Experimental feature.
+    In rare cases 3 or more agents can just start sitting near each other because
+    they cant go left or right equaly. If this option enabled then agent will try
+    to \"shake\" too static agent.\nUse <color=blue><i>PathFinderAgent.useDeadLockFailsafe</i>\r</color>
+    to edit this value from code.\n\n<b>DL Velocity Threshold</b> velocity below agent
+    can be considered deadlocked.\nUse <color=blue><i>PathFinderAgent.deadLockVelocityThreshold</i>\r</color>
+    to edit this value from code.\n\n<b>DL Fail-Safe Velocity</b> velocity that agent
+    will be pushed out from other agents when it trying to shake deadlock\nUse <color=blue><i>PathFinderAgent.deadLockFailsafeVelocity</i>\r</color>
+    to edit this value from code.\n\n<b>DL Fail-Safe Time</b> how much time should
+    pass before agent will return to normal state\nUse <color=blue><i>PathFinderAgent.deadLockFailsafeTime</i>\r</color>
+    to edit this value from code.\n\n<b>Prefer One Side</b> If this option enabled
+    then Agent will make collision cone slightly larger on left side. And thus will
+    more prone to evade to right side.\nUse <color=blue><i>PathFinderAgent.preferOneSideEvasion</i>\r</color>
+    to edit this value from code.\n\n<b>Side Offset</b> how far left side of collision
+    cone should be offseted\nUse <color=blue><i>PathFinderAgent.preferOneSideEvasionOffset</i>\r</color>
+    to edit this value from code.\n\n\n<b><size=20>How to use it</size></b>\nIn PathFinder
+    all Agents updates at same time. To perform Update for local avoidance solver
+    use <color=blue><i>PathFinder.UpdateRVO()</i>\r</color> function. It will flip
+    some flags and update PathFinder. I suggest to run somewhere in scene Unity \"Update()\"
+    function and call \"UpdateRVO()\" inside it.\n\n<b>Before Update</b>: Agent should
+    know 3 values:\n \u2022 World Position: Set it by setting <color=blue><i>LocalAvoidanceAgent.position</i>\r</color>
+    it's position. This is Vector3 value. In case PathFinderAgent you can skip it
+    since it set it's position on it's own. You should set this value if you using
+    LocalAvoidanceAgent.\n \u2022 Velocity: Set it by setting <color=blue><i>LocalAvoidanceAgent.velocity</i>\r</color>
+    it's velocity. This is Vector2 value and velocity should be on (X,Z) axis in top
+    view.\n \u2022 Preferable Velocity: Set it by setting <color=blue><i>LocalAvoidanceAgent.velocity</i>\r</color>
+    it's world velocity. This is Vector2 value and velocity should be on (X,Z) axis
+    in top view. This is direction Agent actualy wants to move.\n\n<b>After Update</b>:
+    Agent will recieve closest to preferable velocity to <color=blue><i>LocalAvoidanceAgent.safeVelocity</i>\r</color>
+    where it dont collide with anything in (X,Z) projection. This is only result from
+    local avoidance solver."
+  - 'In PathFinder you can assign Area automaticaly on terrain with this component.
+
+    You can find it in folder <i>PathFinder/Components/TerrainNavmeshSettings.cs</i>'
+  - 'If this component present in Terrain then PathFinder will read Terrain texture,
+    check what biggest value there and assign Area accordingly.
+
+    You can use Area only from global Area List.'
+  - "You can assign this values from code using:\n<color=blue><i>SetArea(int splatMapIndex,
+    int area)</i>\r</color>\n<color=blue><i>SetArea(int splatMapIndex, Area area)</i>\r</color>\nsplatMapIndex
+    is index of SplatPrototype (for Unity < 2018.3) or TerrainLayer (for Unity > 2018.3)
+    in terrain.terrainData\n\nI recoment to read \"General/Helpful Attributes\" cause
+    there is one that draw int as Area to help you setup it in your code"
+  - '<b>AreaAttribute</b>
+
+    You can draw Area dropdown menu if you use this attribute before int.'
+  - '<b>LayerPFAttribute</b>
+
+    You can draw PathFinder Layers if you use this attribute before int.'
+  - "You can register on NavMesh some User-defined data using this. And later on extract
+    it by using Queries or some different way.\n\nBy default it implemented with \n<i>PathFinder/Components/NavMeshContent.cs</i>\nThis
+    is MonoBehaviour component that you can derive from. It will automaticaly add
+    itself to PathFinder and update when moved. But using it is not mandatory. You
+    can derive from interface:"
+  - "With help of <b>Area Modifier</b> you can add to navmesh data that can be accessed
+    after PathFinder generates Path over where that Path Content stored. This is userful
+    to store on actual NavMesh some metadata about world. For example you can add
+    to NavMesh state of door along with way to open this door. Or add to passage information
+    about fee or whatever.\n\nIt should be derived from:\n<color=blue><i>abstract
+    class CellPathContentAbstract</i>\r</color>\nFor example:"
+  - 'Also in PathFinder there is simple struct to help work with Bit Masks. It called
+    "BitMaskPF". ThisAttribute also can be used with it. '
+  - "In PathFinder there is simple Local Avoidance implementation. At this moment
+    Agents can evade each others (in some degree) and navmesh borders.\n\nIt have
+    it's own agent: <b>LocalAvoidanceAgent</b> \nAfter you create it you should register
+    it in PathFinder by using:\n<color=blue><i>PathFinder.RegisterLocalAvoidanceAgent(LocalAvoidanceAgent
+    agent)</i>\r</color>\n\nOr you can use <b>PathFinderAgent</b> since it is wrapper
+    for LocalAvoidanceAgent and do it for you.\nLater on local avoidance will be probably
+    heavily changed to more ECS friendly version so i advice to use PathFinderAgent
+    since it will probably retain it's API.\n\nSince only PathFinderAgent have Inspector
+    and intended to be used for beginners it will be mainly covered in this Manual.
+    But all information here also applicable to LocalAvoidanceAgent."
+  - 'In PathFinder there is way to dynamicaly change NavMesh cost in some degree.
+    It is not accurate in any mean but userfult when you actualy dont need much accuracy.
+
+
+    You can find it in folder <i>PathFinder/Components/CostModifier.cs</i>
+
+
+    You have up to 32 delta cost groups. (lesser number will eat less memory)
+
+    Chosing group done by using bitmask. There is bunch of methods that allow input
+    of this bitmask in Queries.  '
+  - '<b>Properties</b> AgentProperties it affects
+
+
+    <b>Group</b> Group of current modifier. You can have as much modifiers as you
+    want inside one group. Finite delta-cost for navmesh is sum of modifiers inside
+    group.
+
+
+    <b>Multiplier</b> Way to affect final result. Only values from 0f to 1f will affect
+    result. Formula is Multiplier.Evaluate([current cost]/ [max cost]) * [max cost].
+    i.e. you take current normalized to max navmesh cost distance, put it into multiplier
+    and multiply by max cost.
+
+    Later on it will probably be reduced to just 2 KeyFrames to improve perfmance
+    (i had no time to write custon editor for that)
+
+
+    <b>Max Navmesh Cost</b> Maximum distance on navmesh Delta Cost affect from it
+    position
+
+
+    It can be used for example to avoid some space. Agent on that picture tries to
+    find suitable cover position. Delta cost affects cover result and agent tries
+    to find furthest position on navmesh from target position AND generate path that
+    move aroundtarget position cause it simply costs more.'
+  - '<b><size=20>How to assign Layer</size></b>
+
+    To assign layer to part of NavMesh you should use AreaModifier. You can read about
+    it in Components/AreaModifier tab.
+
+    Create one, mark some space using it, sellect Mode: "Modify Area" and finaly set
+    to true checkbox "Use Advanced Area".
+
+
+    After that you can assign Layer in bottom of that menu.
+
+    Navmesh can only have single Layer value.'
+  - '<b><size=20>How to use Layer</size></b>
+
+    At this moment there is 2 ways to use it:
+
+
+    You can sellect used layers in Layer Mask in PathFinderAgent component:'
+  - '[box] MyBox'
+  - "In this case Agent will use this layer mask inside it's things if you dont specify
+    other layer mask.\n\nOr you can specify layer mask in queries or in PathFinderAgent
+    when you use it. For example it have function:\n<color=blue><i>SetGoalMoveHere(Vector3
+    destination, BestFitOptions bestFitSearch...)</i>\r</color>\nBut it also have
+    overload:\n<color=blue><i>SetGoalMoveHere(Vector3 destination, <b>int layerMask,</b>
+    int costModifierMask, BestFitOptions bestFitSearch...)</i></color>\n\nit have
+    Int32 as input. To simplify creating propper input you can use build in <b>BitMaskPF</b>
+    struct and <color=blue><i>PathFinder.StringToLayer(string layer)</i></color>\nFor
+    example like that:"
+  - "public interface ICellContentValueExternal : ICellContentValue {\n    float maxNavmeshDistance
+    { get; }\n}\r"
+  - "And use:\n<color=blue><i>PathFinder.ProcessCellContent(ICellContentValueExternal
+    value)</i>\r</color> to Add or Update target value\n<color=blue><i>PathFinder.RemoveCellContent(ICellContentValueExternal
+    value)</i>\r</color> to Remove target value\n\nAt this moment main way to extract
+    registered values from NavMesh is <b>NavMeshPointQuery\r</b>\nThis is userful
+    cause you can quickly check what accessable near Agent. For example you can register
+    on navmesh some dropped Items and quickly check what Items are near your Agent
+    and send agent there. Or you can register Agent itself on navmesh this way and
+    check which Agent nearby."
+  - '[Area] public int myArea;'
+  - 'Will look like that in Inspector:'
+  - Will look like that
+  - '[Area] public int myArea;'
+  - 'Will look like that in Inspector:'
+  - '[LayerPF] public BitMaskPF myLayers;'
+  - '[LayerPF] public int myLayer;'
+  - 'Will look like that in Inspector:'
+  - '[LayerPF] public int myLayer;'
+  - Will look like that
+  - '[LayerPF] public BitMaskPF myLayers;'
+  - Will look like that
+  - 'BitMaskPF myMask = new BitMaskPF();
+
+    myMask[PathFinder.StringToLayer("Default")] = true;
+
+    myMask[PathFinder.StringToLayer("Ignore")] = true;'
+  - 'And use "myMask" as input to mentioned function.
+
+
+    Or you can use [LayerPF] Attribute in combination with BitMaskPF. '
+  - '[LayerPF] public BitMaskPF myLayers;'
+  - 'will look like that:'
+  - 'AgentProperties properties;
+
+    IPathOwner pathOwner;
+
+    NavMeshPathQueryGeneric myPathQuery = new NavMeshPathQueryGeneric(properties,
+    pathOwner);'
+  - "\n<b>2) Queue Path</b>\nAfter you create Query you should use it's function <color=blue><i>QueueWork</i>\r</color>\nIf
+    have large amount of arguments and optional arguments:\n\u2022 <color=blue><i>Vector3
+    start</i>\r</color>: Start position for searching Path. This is optional argiment
+    nd there is version that takes current Agent position\n\u2022 <color=blue><i>Vector3
+    target</i>\r</color>: Target position for searching path\n\u2022 <color=blue><i>int
+    layerMask</i>\r</color>: You can specify mask for searching on navmesh. this is
+    optional argument. if you dont intrested in layered search you can set it to 1
+    in this case only default layer will be included\n\u2022 <color=blue><i>int costModifierMask</i>\r</color>:
+    You can specify mask for cost modifiers. this is optional argument. this is way
+    to offset navmesh cost by external values \n\u2022 <color=blue><i>BestFitOptions
+    bestFitSearch</i>\r</color>: Control what query should do if it did not find suitable
+    path\n\u2022 <color=blue><i>bool applyRaycast</i>\r</color>: Result can potentialy
+    have unnecessary waypoints. If this option enabled then path query will attempt
+    to simplify result by using navmesh raycasting. It cost some perfomance but noticeable
+    improves result\n\u2022 <color=blue><i>bool collectPathContent</i>\r</color>:
+    If enabled then path query will collect external information from navmesh when
+    generation path over it\n\u2022 <color=blue><i>bool ignoreCrouchCost</i>\r</color>:
+    If enabled then it will ignore cost for crouching. Use this when your agent switch
+    it state to constant crouching\n\u2022 <color=blue><i>bool updatePathFinder</i>\r</color>:
+    If true then after you queue work pathfinder will automaticaly updated. if you
+    want to save up some perfomance you can batch some work within some time and call
+    PathFinder.Update() youself\n\nAll arguments after \"start\" and \"target\" is
+    optional. I recomend to assign arguments by name. For example:"
+  - "public class MyCellContent : CellPathContentAbstract{\n    public bool myValue;\n}"
+  - "This class have 2 virtual methods: \n<color=blue><i>virtual void OnAddingToCell(Cell
+    cell) { }</i>\r</color> called when this value added to cell\n<color=blue><i>virtual
+    void OnRemovingFromCell(Cell cell) { }</i>\r</color> called when this value removed
+    from cell\n\nThen you can optionaly collect this content when you set to true
+    this argument\n<color=blue><i>PathFinderAgent.<color=blue><i>SetGoalMoveHere(Vector3
+    destination..., <b>bool collectPathContent</b> ...)</i>\r</color></i>\r</color>\nAlso
+    NavMeshPathQueryGeneric have this optional argument\n\nThen when Agent (or query)
+    recieve resulted Path it wull contain in <color=blue><i>Path.pathContent</i>\r</color>
+    all CellPathContentAbstract it gather along the path."
+  - "public class ExampleClass : MonoBehaviour, IPathOwner {\r\n    public AgentProperties
+    properties;\r\n    public Vector3 pathTarget;\r\n    private NavMeshPathQueryGeneric
+    myPathQuery;\r\n\r\n    void Start() {\r\n        myPathQuery = new NavMeshPathQueryGeneric(properties,
+    this);\r\n    }\r\n\r\n    void Update() {\r\n        <b>myPathQuery.QueueWork(transform.position,
+    pathTarget, applyRaycast: true, collectPathContent: true);\r</b>\n    }\r\n\r
+    \   \n    //implements IPathOwner\n    public Vector3 pathFallbackPosition {\r\n
+    \       get { return transform.position; }\r\n    }\r\n}"
+  - "\n<b>3) Receive Path</b>\nAfter you queue Path this query will add itself to
+    current queue of queries and optionaly force PathFinder to update. When PathFinder
+    update itself in it's own thread Query will perform searching of Path.\nAfter
+    it all done you can use <color=blue><i>threadSafeResult</i>\r</color> variable
+    inside query"
+  - "    void Update() {\r\n        myPathQuery.QueueWork(transform.position, pathTarget,
+    applyRaycast: true, collectPathContent: true);\r\n        Debug.Log(\"Path have
+    \" + <b>myPathQuery.threadSafeResult.count</b> + \" nodes\");\n    }\r"
+  - "I advice you to use this variable when you intercting with Path and don't cache
+    it. Cause Path is pooled value and it will return to pool on next QueueWork.\n\nIf
+    you want actual copy of Path then use <color=blue><i>Path.Copy()</i>\r</color>\nWhen
+    you done with copy dont forget to return it to pool by using <color=blue><i>Path.ReturnToPool()</i>\r</color>"
+  - "    void Update() {\r\n        myPathQuery.QueueWork(transform.position, pathTarget,
+    applyRaycast: true, collectPathContent: true);\r\n        Path copyOfPath = <b>myPathQuery.threadSafeResult\r.Copy();</b>
+    //create path copy\n        <b>copyOfPath.ReturnToPool();</b> //return copy of
+    path to pool so it can be reused again\n    }\r"
+  - "Query to collect things that implementing ICellContentValueExternal interface.
+    \nIt return result in form of <b>List<PointQueryResult<T>></b>\nwhere PointQueryResult
+    is:"
+  - '
+
+    <b>Using Delegate</b>
+
+    You can set delegate when path was generated in PathFinder thread or when it was
+    recieved to threadSafe variable.'
+  - "void Start() {\r\n    myPathQuery = new NavMeshPathQueryGeneric(properties, this);\r\n
+    \   myPathQuery.SetOnFinishedDelegate(MyPathDelegate, AgentDelegateMode.ThreadSafe);\n}\r\n\nvoid
+    MyPathDelegate(Path path){\n    Debug.Log(\"Path have \" + myPathQuery.threadSafeResult.count
+    + \" nodes\");\n}"
+  - '
+
+    <b>1) Create Query</b>
+
+    Use the constructor. It reqire AgentProperties that specify what navmesh should
+    be used and generic type that require inheretance from ICellContentValue and that
+    value should be registered on navmesh.
+
+    Or you can inherit from NavMeshContent class to use it in your components so it
+    call PathFinder API on it''s own.'
+  - "//example content that only have position and max distance\nclass <b>MyPoint</b>
+    : ICellContentValueExternal {\r\n    public Vector3 position { get; private set;
+    }\r\n    public float maxNavmeshDistance {\r\n        get { return float.MaxValue;
+    }\r\n    }\r\n}\n\npublic AgentProperties myProperties;\nprivate NavMeshPointQuery<<b>MyPoint</b>>
+    myQuery;\n\nvoid Start(){\n    myQuery = new NavMeshPointQuery<<b>MyPoint</b>>(myProperties);\n}"
+  - "\n<b>2) Queue Points</b>\nAfter you create Query you should use it's function
+    <color=blue><i>QueueWork</i>\r</color>\nIf have some amount of arguments and optional
+    arguments:\n\u2022 <color=blue><i>Vector3 position</i>\r</color>: position from
+    where search is performed\n\u2022 <color=blue><i>float maxCost</i>\r</color>:
+    max cost on navmesh graph that query will check. large numbers lead to poor perfomance\n\u2022
+    <color=blue><i>int layerMask</i>\r</color>: You can specify mask for searching
+    on navmesh. this is optional argument. if you dont intrested in layered search
+    you can set it to 1 in this case only default layer will be included\r\n\u2022
+    <color=blue><i>int costModifierMask</i>\r</color>: You can specify mask for cost
+    modifiers. this is optional argument. this is way to offset navmesh cost by external
+    values \r\n\u2022 <color=blue><i>Predicate<ContentValueType> predicate</i>\r</color>:
+    you can specify predicate for what points should be added. or leave it as null\r\n\u2022
+    <color=blue><i>bool richCost</i>\r</color>: if true then calculate more accurate
+    cost but this will do more expensive operations. \r\n\u2022 <color=blue><i>bool
+    ignoreCrouchCost </i>\r</color>if true then crouch cost will be calculated as
+    walking cost. for cases when Agent crouching all time\r\n\u2022 <color=blue><i>bool
+    updatePathFinder</i>\r</color>: If true then after you queue work pathfinder will
+    automaticaly updated. if you want to save up some perfomance you can batch some
+    work within some time and call PathFinder.Update() youself\n\nThere is another
+    version of that function but instead of single position if have input for multiple
+    positions at same time\n\u2022 <color=blue><i>params Vector3[] positions</i>\r</color>\nIf
+    multiple positions inside one navmesh part then only first will have correct cost
+    if \"richCost\" setted to true\n\nAll arguments after \"position\" and \"maxCost\"
+    is optional. I recomend to assign arguments by name. For example:"
+  - "public struct PointQueryResult<T> {\r\n    public T value;      \r\n    public
+    float cost;\n}"
+  - It will contain result value and move cost over navmesh.
+  - "public class ExampleClass : MonoBehaviour, IPathOwner {\r\n    public AgentProperties
+    properties;\r\n    public float maxDistance;\n    private NavMeshPointQuery myPointQuery;\r\n\r\n
+    \   void Start() {\r\n        myPointQuery = new NavMeshPointQuery<MyPoint >(properties,
+    this);\r\n    }\r\n\r\n    void Update() {\r\n         <b>myPointQuery.QueueWork(transform.position,
+    maxDistance, richCost: true);\r</b>\n    }\n}"
+  - Query will only return results for this generic type.
+  - "\n<b>3) Receive Result</b>\nAfter you queue Points this query will add itself
+    to current queue of queries and optionaly force PathFinder to update. When PathFinder
+    update itself in it's own thread Query will perform searching of target type of
+    points with optional predicate.\nAfter it all done you can use <color=blue><i>threadSafeResult</i>\r</color>
+    variable inside query"
+  - "    void Update() {\r\n        myPointQuery.QueueWork(transform.position, maxDistance,
+    richCost: true);\n        foreach (var point in <b>myPointQuery.threadSafeResult</b>)
+    {\r\n            Debug.Log(\"Value \" + point.value + \" have \" + point.cost
+    + \"cost over navmesh\");\r\n        }\r\n    }      "
+  - Cost calculated is not as distance of actual path there but cost over navmesh
+    graph. It is not very accurate but cost for point near Agent and cost for point
+    behind wall will be noticeable different.
+  - '
+
+    <b>Using Delegate</b>
+
+    You can set delegate when result was generated in PathFinder thread or when it
+    was recieved to threadSafe variable.
+
+    It have some funky type since result is list of struct that contain generic type
+    variable'
+  - "void Start() {\r\n    myPointQuery = new NavMeshPointQuery<<b>MyPoint</b> >(properties,
+    this);\r\n    myPointQuery.SetOnFinishedDelegate(MyPathDelegate, AgentDelegateMode.ThreadSafe);\n}\r\n\nvoid
+    MyPointDelegate(List<PointQueryResult<<b>MyPoint</b>>> points){\n    foreach (var
+    item in points) {\r\n        Debug.Log(item.ToString());\r\n    }\n}"
+  - 'List of queries with short description that probably will be changed over time
+
+
+    <b>NavMeshPathQueryTargetArea</b>
+
+    Returns Path to nearest specific Area. Userful when some space is marked by Area
+    and you dont care which one Agent should choose but he must go there.
+
+
+    <b>NavMeshPathQueryTargetArea</b>
+
+    Returns Path to nearest navMesh content of specific type with optional delegate
+
+
+    <b>NavMeshPathQueryVectored</b>
+
+    Return Path in some general direction with specific distance.
+
+
+    <b>NavMeshQuerySamplePosition</b>
+
+    Collect navmesh position closest to target point or specific set of points. It
+    is not very handy to use Query just to get nearest navmesh position but this is
+    most threadsafe option.
+
+
+    <b>NavMeshQueryRaycastGeneric</b>
+
+    Performs raycasting on navmesh
+
+
+    <b>NavMeshQueryRaycastGeneric</b>
+
+    Performs raycasting on navmesh
+
+
+    <b>NavMeshQueryNavmeshToMesh</b>
+
+    Collect target Area and Property navmesh edges and triangles'
+  - "Used to describe set of waypoints with additional information. Actual code in
+    PathFinder/PathInformation.cs if you want to read.\r\n\n<b><size=20>Public Variables</size></b>\n\n<color=blue><i>List<PathNode>
+    pathNodes</i>\r</color> that describe path. \nPathNode is struct with (x, y, z)
+    in world space and and PathNodeType."
+  - "public struct PathNode {\r\n    public float x, y, z;\r\n    public PathNodeType
+    type;\r\n}"
+  - "<b>PathNodeType</b> are used to describe what kind of node there is:\n\u2022
+    <color=blue><i>Invalid</i>\r</color>: This value will be when Path no longer have
+    valid nodes.\n\u2022 <color=blue><i>MoveCrouch</i>\r</color>: To reach this position
+    from previous Agent should crouch\n\u2022 <color=blue><i>MoveWalk </i>\r</color>:
+    To reach this position from previous Agent can either crouch or just walk\n\u2022
+    <color=blue><i>JumpUpFirstNode </i>\r</color>: Node where agent should stand when
+    performing jump up\n\u2022 <color=blue><i>JumpUpSecondNode</i>\r</color>: Node
+    that hanging over to end jump up"
+  - "\u2022 <color=blue><i>JumpDownFirstNode</i>\r</color>: node where jump down performed\n\u2022
+    <color=blue><i>JumpDownSecondNode </i>\r</color>: landing point"
+  - "\n<color=blue><i>PathResultType pathType</i>\r</color>: variable to troubleshoot
+    path. \n\n<b>PathResultType</b>:\n\u2022 <color=blue><i>Valid\r</i></color>: Path
+    is fully valid\n\u2022 <color=blue><i>BestFit</i></color>: Path returned best
+    fit and did not reach target\n\u2022 <color=blue><i>InvalidAgentOutsideNavmesh</i>\r</color>:
+    Agent was outside navmesh\n\u2022 <color=blue><i>InvalidTargetOutsideNavmesh</i>\r</color>:
+    Target position was outside navmesh \n\u2022 <color=blue><i>InvalidNoPath</i>\r</color>:
+    No valid path\n\u2022 <color=blue><i>InvalidExceedTimeLimit</i>\r</color>: Path
+    seach was too long\n\u2022 <color=blue><i>InvalidInternalIssue</i>\r</color>:
+    It did not fit in any category above and something went really wrong\n\n<color=blue><i>IPathOwner
+    owner</i>\r</color>: current Path owner. It return fallback position.\n\r<color=blue><i>float
+    pathNavmeshCost</i>\r</color>: Aproximated navmesh cost for quick comparison of
+    2 Paths."
+  - "<b><size=20>Properties and Functions</size></b>\n\r<color=blue><i>bool valid
+    {get;}</i>\r</color>: returns true if pathType is Valid or BestFit and owner is
+    not a null\n\r<color=blue><i>int currentIndex {get;}</i>\r</color> return current
+    index in nodes list\n\r<color=blue><i>int count {get;}</i>\r</color>: return total
+    nodes count minus current node index\n\r<color=blue><i>PathNode currentNode{get;}</i>\r</color>:
+    node at current index of path\n\r<color=blue><i>PathNode lastNode {get;}</i>\r</color>:
+    last node in path\n\r<color=blue><i>Vector3 currentV3 {get;}</i>\r</color>: (x,y,z)
+    position of current node\n\r<color=blue><i>Vector2 currentV2 {get;}</i>\r</color>:
+    (x,z) position of current node\n\r<color=blue><i>Vector3 lastV3 {get;}</i>\r</color>:
+    (x,y,z) position of last node\n\r<color=blue><i>Vector2 lastV2 {get;}</i>\r</color>:
+    (x,z) position of last node\n\r<color=blue><i>bool MoveToNextNode()</i>\r</color>
+    increase current node index by 1. returns if index was increased\n\r<color=blue><i>void
+    SetCurrentIndex(int value)</i>\r</color> jump to some particular node\n\r<color=blue><i>bool
+    MovableDistanceLesserThan(Vector3 ownerPosition, float targetDistance, out float
+    distance, out PathNode node, out bool reachLastPoint)</i>\r</color> Iterate over
+    remaining nodes from target position and tellsif there is jumping node in target
+    distance. Userful for handling animation of jump before you reach actual jump
+    node in Path. Have lots of overloads"
+  - "<b><size=20>Pooling</size></b>\nPath is object and it is taken from pool. Creating
+    and destroying objects is expensive so there is object pool for Path. It is taken
+    from pool when it generated and returned to pool when no longer required.\n\r<color=blue><i>Path
+    Copy()</i>\r</color>: Use this when you need copy of Path. Takes from pool new
+    Path, copy to it current Path\n\r<color=blue><i>void ReturnToPool()</i>\r</color>:
+    When you done with copy return this Path to pool when it no longer required.\n"
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  stringArrayFilled: 120
+  stringArrayFreeStack: 0100000002000000450000004d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  stringArrayFreeStackCount: 2
+  textureArray:
+  - {fileID: 0}
+  - {fileID: 2800000, guid: 0f6cb2f7c72ab0047b41cb260b04a8a8, type: 3}
+  - {fileID: 2800000, guid: db974d42276d6c0499efface5d8cab5e, type: 3}
+  - {fileID: 2800000, guid: d57d552eab6729744868c93b218b14da, type: 3}
+  - {fileID: 2800000, guid: c02d4d4f24b5167479333b35b4dab943, type: 3}
+  - {fileID: 2800000, guid: 982ee2daa53f404438029ea1f06723cd, type: 3}
+  - {fileID: 2800000, guid: 3d99d475b98dfd14daf5e0c17e5a1484, type: 3}
+  - {fileID: 2800000, guid: 113b2085d0458be4ebeb35859b725a5b, type: 3}
+  - {fileID: 2800000, guid: bd94ec9dd2b26ce4c914d3af9e244c9c, type: 3}
+  - {fileID: 2800000, guid: 5041892b9a99204419bdb373cf3efd30, type: 3}
+  - {fileID: 2800000, guid: a9f6da8edd38b61459f239fae94b4cba, type: 3}
+  - {fileID: 2800000, guid: 736b5235bd42ec24c9db01c54fc29712, type: 3}
+  - {fileID: 2800000, guid: 6e6b0e3260593fb40af9fb201e6265b7, type: 3}
+  - {fileID: 2800000, guid: d433d9ca9117fe24d833bd7a2c3a0540, type: 3}
+  - {fileID: 2800000, guid: bc786b26a521b3e4fa39b325303ddbd0, type: 3}
+  - {fileID: 2800000, guid: 27213a427146d8b448bbda992931beae, type: 3}
+  - {fileID: 2800000, guid: d113f6656a3e0c4448cb548fabbd100d, type: 3}
+  - {fileID: 2800000, guid: dd06e59cf4a19de41855d372c12fb0d6, type: 3}
+  - {fileID: 2800000, guid: ae0140da86561554e8a666bf87d3a888, type: 3}
+  - {fileID: 2800000, guid: a041196a1a81e8d4487a00861e4a3ebd, type: 3}
+  - {fileID: 2800000, guid: 8d226711b44cc6c4c840b6380e87e7ed, type: 3}
+  - {fileID: 2800000, guid: 4c8923abeb86e2f45a700f6dcfdc5bd0, type: 3}
+  - {fileID: 2800000, guid: 2899c5ede251a5e47865fff42365b2c4, type: 3}
+  - {fileID: 2800000, guid: 69425ce0a8bdb8b4083473185332c2f2, type: 3}
+  - {fileID: 2800000, guid: ac9ec9c0c60e1894595536d7f8e4beac, type: 3}
+  - {fileID: 2800000, guid: 5901176c1114cb941a29e0c19b77e892, type: 3}
+  - {fileID: 2800000, guid: 53e9288f96e079e47a25f83b29be9581, type: 3}
+  - {fileID: 2800000, guid: af6f56a0729b86a4a97cfb9cb83972e0, type: 3}
+  - {fileID: 2800000, guid: 071fe4f7a6d2c9e47bbf8bf8783ddc62, type: 3}
+  - {fileID: 2800000, guid: 6e6b0e3260593fb40af9fb201e6265b7, type: 3}
+  - {fileID: 2800000, guid: 00eea055635aa96419eddbe1c19ecf9d, type: 3}
+  - {fileID: 2800000, guid: 2b3fdbcc23e6af24aac6a4e5ed93d03b, type: 3}
+  - {fileID: 2800000, guid: 07203f68eb65a084db673e5aad04535b, type: 3}
+  - {fileID: 2800000, guid: 0f05a8dccbdbd1a41aee994796cdcf1b, type: 3}
+  - {fileID: 2800000, guid: 7693c0e751e332e4ba86ec923fbf3ef3, type: 3}
+  - {fileID: 2800000, guid: a4cf0ffec2e854747b909b0446622099, type: 3}
+  - {fileID: 2800000, guid: a041196a1a81e8d4487a00861e4a3ebd, type: 3}
+  - {fileID: 2800000, guid: af6f56a0729b86a4a97cfb9cb83972e0, type: 3}
+  - {fileID: 2800000, guid: 96747faef5b93004696a6910f7e27834, type: 3}
+  - {fileID: 2800000, guid: 7693c0e751e332e4ba86ec923fbf3ef3, type: 3}
+  - {fileID: 2800000, guid: 9e5eaf3713f1b3c44bced673d0f1057f, type: 3}
+  - {fileID: 2800000, guid: 94e783c8689df2540ad1793cba52a0e3, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  textureArrayFilled: 42
+  textureArrayFreeStack: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  textureArrayFreeStackCount: 1
+  data:
+  - header: General
+    isOpen: 1
+    sellection: 1
+    data:
+    - header: Overview
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 0
+    - header: Helpful Attributes
+      scroll: {x: 0, y: 111}
+      contents:
+      - dataType: 0
+        value: 58
+      - dataType: 2
+        value: 75
+      - dataType: 0
+        value: 74
+      - dataType: 1
+        value: 32
+      - dataType: 0
+        value: 59
+      - dataType: 2
+        value: 80
+      - dataType: 0
+        value: 81
+      - dataType: 1
+        value: 33
+      - dataType: 0
+        value: 62
+      - dataType: 2
+        value: 82
+      - dataType: 0
+        value: 83
+      - dataType: 1
+        value: 34
+  - header: Main Menu
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Overview
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 24
+      - dataType: 1
+        value: 13
+      - dataType: 0
+        value: 25
+    - header: General
+      scroll: {x: 0, y: 733}
+      contents:
+      - dataType: 0
+        value: 26
+      - dataType: 1
+        value: 14
+      - dataType: 0
+        value: 27
+      - dataType: 0
+        value: 28
+      - dataType: 1
+        value: 15
+      - dataType: 0
+        value: 29
+      - dataType: 0
+        value: 30
+      - dataType: 0
+        value: 31
+    - header: Settings
+      scroll: {x: 0, y: 1285}
+      contents:
+      - dataType: 0
+        value: 32
+      - dataType: 1
+        value: 16
+      - dataType: 0
+        value: 33
+      - dataType: 0
+        value: 34
+      - dataType: 1
+        value: 17
+      - dataType: 0
+        value: 35
+      - dataType: 0
+        value: 36
+      - dataType: 1
+        value: 18
+      - dataType: 0
+        value: 37
+      - dataType: 0
+        value: 38
+      - dataType: 1
+        value: 19
+      - dataType: 0
+        value: 39
+    - header: Debuger
+      scroll: {x: 0, y: 34}
+      contents:
+      - dataType: 0
+        value: 40
+      - dataType: 1
+        value: 20
+      - dataType: 0
+        value: 41
+      - dataType: 0
+        value: 42
+      - dataType: 1
+        value: 21
+      - dataType: 0
+        value: 43
+      - dataType: 1
+        value: 22
+      - dataType: 0
+        value: 44
+      - dataType: 0
+        value: 45
+  - header: Properties
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Overview
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 8
+      - dataType: 1
+        value: 6
+      - dataType: 0
+        value: 9
+    - header: General
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 3
+      - dataType: 1
+        value: 1
+      - dataType: 0
+        value: 10
+    - header: Voxel
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 4
+      - dataType: 1
+        value: 2
+      - dataType: 0
+        value: 11
+      - dataType: 1
+        value: 7
+      - dataType: 0
+        value: 12
+    - header: Movement
+      scroll: {x: 0, y: 389}
+      contents:
+      - dataType: 0
+        value: 5
+      - dataType: 1
+        value: 3
+      - dataType: 0
+        value: 13
+      - dataType: 1
+        value: 8
+      - dataType: 0
+        value: 14
+      - dataType: 1
+        value: 9
+      - dataType: 0
+        value: 15
+    - header: Cover
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 6
+      - dataType: 1
+        value: 4
+      - dataType: 0
+        value: 16
+      - dataType: 1
+        value: 10
+      - dataType: 0
+        value: 17
+    - header: Samples
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 7
+      - dataType: 1
+        value: 5
+      - dataType: 0
+        value: 18
+      - dataType: 1
+        value: 11
+  - header: Agent
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Overview
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 19
+      - dataType: 1
+        value: 12
+      - dataType: 0
+        value: 22
+    - header: Handy Stuff
+      scroll: {x: 0, y: 150}
+      contents:
+      - dataType: 0
+        value: 23
+  - header: Queries and Results
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Overview
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 20
+    - header: NavMeshPathQueryGeneric
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 21
+      - dataType: 2
+        value: 88
+      - dataType: 0
+        value: 89
+      - dataType: 2
+        value: 92
+      - dataType: 0
+        value: 93
+      - dataType: 2
+        value: 94
+      - dataType: 0
+        value: 95
+      - dataType: 2
+        value: 96
+      - dataType: 0
+        value: 98
+      - dataType: 2
+        value: 99
+    - header: NavMeshPointQuery
+      scroll: {x: 0, y: 832}
+      contents:
+      - dataType: 0
+        value: 97
+      - dataType: 2
+        value: 103
+      - dataType: 0
+        value: 104
+      - dataType: 0
+        value: 100
+      - dataType: 2
+        value: 101
+      - dataType: 0
+        value: 106
+      - dataType: 0
+        value: 102
+      - dataType: 2
+        value: 105
+      - dataType: 0
+        value: 107
+      - dataType: 2
+        value: 108
+      - dataType: 0
+        value: 109
+      - dataType: 0
+        value: 110
+      - dataType: 2
+        value: 111
+    - header: Misc Queries
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 112
+    - header: Path
+      scroll: {x: 0, y: 966}
+      contents:
+      - dataType: 0
+        value: 113
+      - dataType: 2
+        value: 114
+      - dataType: 0
+        value: 115
+      - dataType: 1
+        value: 40
+      - dataType: 0
+        value: 116
+      - dataType: 1
+        value: 41
+      - dataType: 0
+        value: 117
+      - dataType: 0
+        value: 118
+      - dataType: 0
+        value: 119
+  - header: Local Avoidance
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Local Avoidance Manual
+      scroll: {x: 0, y: 833}
+      contents:
+      - dataType: 0
+        value: 63
+      - dataType: 1
+        value: 29
+      - dataType: 0
+        value: 54
+  - header: Components
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: AreaGameObject
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 45
+      - dataType: 1
+        value: 23
+      - dataType: 0
+        value: 46
+    - header: AreaModifier
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 47
+      - dataType: 1
+        value: 24
+      - dataType: 0
+        value: 48
+      - dataType: 1
+        value: 25
+      - dataType: 0
+        value: 49
+      - dataType: 1
+        value: 26
+      - dataType: 0
+        value: 50
+      - dataType: 1
+        value: 27
+      - dataType: 0
+        value: 51
+    - header: TerrainNavmeshSettings
+      scroll: {x: 0, y: 66}
+      contents:
+      - dataType: 0
+        value: 55
+      - dataType: 1
+        value: 30
+      - dataType: 0
+        value: 56
+      - dataType: 1
+        value: 31
+      - dataType: 0
+        value: 57
+  - header: Features and Limitations
+    isOpen: 1
+    sellection: -1
+    data:
+    - header: Cost Modifier
+      scroll: {x: 0, y: 443}
+      contents:
+      - dataType: 0
+        value: 64
+      - dataType: 1
+        value: 35
+      - dataType: 0
+        value: 65
+      - dataType: 1
+        value: 28
+      - dataType: 0
+        value: 52
+    - header: Cell Path Content
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 61
+      - dataType: 2
+        value: 90
+      - dataType: 0
+        value: 91
+    - header: NavMesh Content
+      scroll: {x: 0, y: 0}
+      contents:
+      - dataType: 0
+        value: 60
+      - dataType: 2
+        value: 70
+      - dataType: 0
+        value: 71
+    - header: Layers
+      scroll: {x: 0, y: 657}
+      contents:
+      - dataType: 0
+        value: 53
+      - dataType: 1
+        value: 36
+      - dataType: 0
+        value: 66
+      - dataType: 1
+        value: 37
+      - dataType: 0
+        value: 67
+      - dataType: 1
+        value: 38
+      - dataType: 0
+        value: 69
+      - dataType: 2
+        value: 84
+      - dataType: 0
+        value: 85
+      - dataType: 2
+        value: 86
+      - dataType: 0
+        value: 87
+      - dataType: 1
+        value: 39

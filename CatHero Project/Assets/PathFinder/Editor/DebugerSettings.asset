@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f8e93bf43f3be4583017f721f02085, type: 3}
+  m_Name: DebugerSettings
+  m_EditorClassIdentifier: 
+  autoUpdateSceneView: 1
+  doDebug: 1
+  doDebugFull: 0
+  doProfiler: 1
+  showChunkContentMap: 0
+  showDeltaCost: 1
+  showSelector: 1
+  showPoolDebug: 0
+  showGenericPoolDebug: 0
+  showArrayPoolDebug: 0
+  showNavmeshIntegrity: 0
+  showNavmeshThreadState: 0
+  drawGenericDots: 1
+  drawGenericLines: 1
+  drawGenericLabels: 1
+  drawGenericMesh: 1
+  drawErrors: 1
+  drawDeltaCost: 0
+  drawDeltaCostProperties: 0
+  drawDeltaCostGroup: 1
+  debugFlags: 01010101000101000101000000000000000000000000
+  debugRVO: 1
+  debugRVODKTree: 0
+  debugRVONeighbours: 0
+  debugRVObasic: 1
+  debugRVOvelocityObstacles: 0
+  debugRVOconvexShape: 1
+  debugRVOplaneIntersections: 0
+  debugRVONavmeshClearance: 1

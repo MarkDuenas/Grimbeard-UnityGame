@@ -1,0 +1,74 @@
+﻿//#include "Assets\PathFinder\Resources\CSRasterization2D.compute"
+
+#pragma kernel Rasterize
+//#pragma directive PointInTriangle2 
+//#pragma directive CalculateHeight
+//#pragma directive LineSide
+//#pragma directive sr
+//#pragma directive PointInTriangle
+
+#define groupDim_x 128
+#define groupDim_y 1
+#define groupDim_z 1
+
+
+struct DataSegment {
+	uint index;
+	uint minX;
+	uint maxX;
+	uint minZ;
+	uint maxZ;
+	uint passability;
+};
+
+struct Voxel {
+	float height;
+	int passability;
+};
+
+StructuredBuffer<float3> CurVerts;
+StructuredBuffer<int> CurTris;
+StructuredBuffer<DataSegment> TargetSegments;
+RWStructuredBuffer<Voxel> Result;
+
+float4 ChunkPos;
+float VoxelSize;
+uint SizeX;
+uint SizeZ;
+
+float CalculateHeight(float3 A, float3 B, float3 C, float2 pos) {
+	float det = (B.z - C.z) * (A.x - C.x) + (C.x - B.x) * (A.z - C.z);
+
+	float l1 = ((B.z - C.z) * (pos.x - C.x) + (C.x - B.x) * (pos.y - C.z)) / det;
+	float l2 = ((C.z - A.z) * (pos.x - C.x) + (A.x - C.x) * (pos.y - C.z)) / det;
+	float l3 = 1.0f - l1 - l2;
+
+	return l1 * A.y + l2 * B.y + l3 * C.y;
+}
+
+float LineSide(float2 A, float2 B, float2 P) {
+	return (B.x - A.x) * (P.y - A.y) - (B.y - A.y) * (P.x - A.x);
+}
+
+
+[numthreads(groupDim_x, groupDim_y, groupDim_z)]
+void Rasterize(uint3 dispatchID : SV_DispatchThreadID, uint3 groupID : SV_GroupID, uint3 threadId : SV_GroupThreadID){	
+	DataSegment ds = TargetSegments[threadId.x + (groupID.x * groupDim_x)];
+	float3 a = CurVerts[CurTris[ds.index]];
+	float3 b = CurVerts[CurTris[ds.index + 1]];
+	float3 c = CurVerts[CurTris[ds.index + 2]];
+	
+	[loop]
+	for (uint x = ds.minX; x < ds.maxX; x++){
+		[loop]
+		for (uint z = ds.minZ; z < ds.maxZ; z++) {
+			float2 po = float2((x * VoxelSize) + ChunkPos.x, (z * VoxelSize) + ChunkPos.z);
+			if (LineSide(a.xz, b.xz, po) <= 0.001 & LineSide(b.xz, c.xz, po) <= 0.001 & LineSide(c.xz, a.xz, po) <= 0.001) {	
+				Voxel v;
+				v.height = CalculateHeight(a, b, c, po);
+				v.passability = ds.passability;
+				Result[x + (z * SizeX)] = v;
+			}
+		}
+	}
+}
