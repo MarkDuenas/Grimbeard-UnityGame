@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class FlyerHealth : MonoBehaviour
 {
-    public int flyerHealth = 50;
-    public GameObject deatheffect;
+    public Animator animator;
+    public int maxHealth = 50;
+    public int currentHealth;
+    Transform MonEnemy;    
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentHealth = maxHealth;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {}
+
     public void TakeDamage(int damage)
     {
-            flyerHealth -= damage;
-        
-        if(flyerHealth <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             Die();
         }
+
     }
 
-    void Die()
+    public void Die()
     {
-        Instantiate(deatheffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        animator.SetBool("isDead", true);
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        this.enabled = false;
     }
 }

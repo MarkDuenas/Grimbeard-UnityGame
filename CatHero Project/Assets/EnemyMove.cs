@@ -6,6 +6,10 @@ public class EnemyMove : StateMachineBehaviour
 {
     public float speed = 2.5f;
     public float EnemyAttackRange = 3f;
+    public int nextAttackTime = 200;
+    public int attackTimer = 0;
+    public float distanceX = 10f;
+    public float distanceY = 5f;
     Transform player;
     Rigidbody2D rb;
     FlyingEnemy flyer;
@@ -22,13 +26,21 @@ public class EnemyMove : StateMachineBehaviour
     {
         flyer.LookAtPlayer();
 
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        Vector2 target = new Vector2(player.position.x, player.position.y);
+        if(Vector2.Distance(player.position, rb.position) <= distanceX && rb.position.y - player.position.y <= distanceY)
+        {
+            Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+            rb.MovePosition(newPos);
+        }
 
         if(Vector2.Distance(player.position, rb.position) <= EnemyAttackRange)
         {
+            attackTimer += 1;
+            if(attackTimer == nextAttackTime)
+            {
             animator.SetTrigger("EnemyAttack");
+            attackTimer = 0;
+            }
         }
     }
 

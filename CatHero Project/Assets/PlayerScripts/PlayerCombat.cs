@@ -42,7 +42,14 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+            if(enemy.tag == "Boss")
+            {
+                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+            }
+            if(enemy.tag == "Flyer")
+            {
+                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+            }
         }
     }
 
@@ -54,7 +61,14 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+            if(enemy.tag == "Boss")
+            {
+                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+            }
+            if(enemy.tag == "Flyer")
+            {
+                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+            }
         }
     }
 
