@@ -26,6 +26,11 @@ public class BossHealth : MonoBehaviour
         currentHealth -= damage;
         animator.SetTrigger("TakeDamage");
 
+        if (currentHealth <= 160)
+        {
+            animator.SetBool("IsEnraged", true);
+        }
+
         if(currentHealth <= 0)
         {
             Die();
