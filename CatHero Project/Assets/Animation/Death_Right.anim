@@ -41,7 +41,7 @@ AnimationClip:
       value: {fileID: 7371172387441731375, guid: b1f290814d4a0bd4ab5dd05927886cc4,
         type: 3}
     - time: 0.75
-      value: {fileID: 3510321757404695454, guid: b1f290814d4a0bd4ab5dd05927886cc4,
+      value: {fileID: -1830012930772382542, guid: b1f290814d4a0bd4ab5dd05927886cc4,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -69,7 +69,7 @@ AnimationClip:
     - {fileID: 4700356684142812691, guid: b1f290814d4a0bd4ab5dd05927886cc4, type: 3}
     - {fileID: -8544653125190484742, guid: b1f290814d4a0bd4ab5dd05927886cc4, type: 3}
     - {fileID: 7371172387441731375, guid: b1f290814d4a0bd4ab5dd05927886cc4, type: 3}
-    - {fileID: 3510321757404695454, guid: b1f290814d4a0bd4ab5dd05927886cc4, type: 3}
+    - {fileID: -1830012930772382542, guid: b1f290814d4a0bd4ab5dd05927886cc4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -94,4 +94,60 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

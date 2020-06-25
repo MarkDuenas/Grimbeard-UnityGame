@@ -7,6 +7,7 @@ public class BossHealth : MonoBehaviour
     public Animator animator;
     public int maxHealth = 100;
     public int currentHealth;
+    public bool BossDeath = false;
     Transform minotaur;    
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,6 @@ public class BossHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void TakeDamage(int damage)
@@ -40,9 +40,11 @@ public class BossHealth : MonoBehaviour
 
     public void Die()
     {
+        BossDeath = true;
         animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
+        
 
         // Vector3 newPosition = minotaur.transform.position;
         // newPosition.y = 3f;
@@ -50,4 +52,6 @@ public class BossHealth : MonoBehaviour
 
         this.enabled = false;
     }
+
+
 }

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
+    public bool PlayerDeath = false;
     // Start is called before the first frame update
     public void Start()
     {
@@ -18,10 +19,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.X))
-        // {
-        //     TakeDamage(20);
-        // }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TakeDamage(20);
+        }
+        if (PlayerDeath)
+        {
+            FindObjectOfType<GameManager>().Loss();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -33,16 +38,20 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             Die();
+            // PlayerDeath = true;
         }
     }
 
     public void Die()
     {
+        PlayerDeath = true;
         animator.SetBool("IsDead", true);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
 
+
         this.enabled = false;
 
     }
+        
 }
