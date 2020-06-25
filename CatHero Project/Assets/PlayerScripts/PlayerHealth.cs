@@ -46,8 +46,8 @@ public class PlayerHealth : MonoBehaviour
     {
         PlayerDeath = true;
         animator.SetBool("IsDead", true);
-        // GetComponent<BoxCollider2D>().enabled = false;
-        // GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
 
 
         this.enabled = false;

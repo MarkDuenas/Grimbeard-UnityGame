@@ -5,9 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
-  - Enemy
-  - Skeleton
-  - Flyer
   layers:
   - Default
   - TransparentFX
@@ -21,6 +18,7 @@ TagManager:
   - Ladder
   - Enemy
   - Flowers
+  - 
   - 
   - 
   - 

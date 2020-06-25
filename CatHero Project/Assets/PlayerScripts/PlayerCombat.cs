@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = .05f;
     public LayerMask enemyLayers;
     public int attackDamage = 20;
+
     public float attackRate = 2f;
     float nextAttacktime = 0f;
     // Update is called once per frame
@@ -41,18 +42,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            if(enemy.tag == "Boss")
-            {
-                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
-            }
-            else if(enemy.tag == "Skeleton")
-            {
-                enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
-            }
-            else if(enemy.tag == "Flyer")
-            {
-                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
-            }
+            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
         }
     }
 
@@ -64,25 +54,14 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            if(enemy.tag == "Boss")
-            {
-                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
-            }
-            else if(enemy.tag == "Skeleton")
-            {
-                enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
-            }
-            else if(enemy.tag == "Flyer")
-            {
-                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
-            }
+            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
         }
     }
+
     void OnDrawGizmosSelected()
     {
         if(attackPoint == null)
             return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
 }

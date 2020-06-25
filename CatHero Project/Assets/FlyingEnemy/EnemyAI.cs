@@ -5,17 +5,13 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public int attackDamage = 15;
-    
-    public Animator animator;
-    public int maxHealth = 50;
-    int currentHealth;
+
     public Transform target;
     public float speed = 200f;
     public float nextWayPointDistance = 3f;
 
     public Transform enemyGFX;
-    
+    public Animator animator;
 
     Path path;
     int currentWaypoint = 0;
@@ -28,28 +24,10 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("enemy died");
-        animator.SetBool("Dead", true);
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
     }
 
     void UpdatePath()

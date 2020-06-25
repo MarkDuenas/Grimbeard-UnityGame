@@ -32,7 +32,7 @@ public class Boss_Run : StateMachineBehaviour
         boss.LookAtPlayer();
 
         Vector2 target = new Vector2(player.position.x, rb.position.y);
-        if(Vector2.Distance(player.position, rb.position) <= distance)
+        if (player.position.x >= 255f)
         {
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
