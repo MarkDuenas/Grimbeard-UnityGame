@@ -2,47 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class BossHealth : MonoBehaviour
 {
     public Animator animator;
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar healthBar;
+    Transform minotaur;    
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.X))
-        // {
-        //     TakeDamage(20);
-        // }
+        
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        animator.SetTrigger("Damaged");
-        
+        animator.SetTrigger("TakeDamage");
+
+        if (currentHealth <= 160)
+        {
+            animator.SetBool("IsEnraged", true);
+        }
+
         if(currentHealth <= 0)
         {
             Die();
         }
+
     }
 
     public void Die()
     {
-        animator.SetBool("IsDead", true);
+        animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
 
-        this.enabled = false;
+        // Vector3 newPosition = minotaur.transform.position;
+        // newPosition.y = 3f;
+        // minotaur.localPosition = new Vector2(237f, -3f);
 
+        this.enabled = false;
     }
 }
