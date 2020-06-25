@@ -53,6 +53,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
+        }
     }
 
     void AttackTwo()
@@ -75,12 +76,13 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
+        }
     }
-
     void OnDrawGizmosSelected()
     {
         if(attackPoint == null)
             return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 }
