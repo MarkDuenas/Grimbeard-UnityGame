@@ -32,7 +32,6 @@ public class FlyerHealth : MonoBehaviour
     public void Die()
     {
         animator.SetBool("isDead", true);
-        GetComponent<Collider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         this.enabled = false;
     }
