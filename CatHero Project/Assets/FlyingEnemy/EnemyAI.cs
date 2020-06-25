@@ -11,12 +11,15 @@ public class EnemyAI : MonoBehaviour
     public float nextWayPointDistance = 3f;
 
     public Transform enemyGFX;
+    public Animator animator;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
     Seeker seeker;
     Rigidbody2D rb;
+
+
 
     // Start is called before the first frame update
     void Start()
