@@ -49,7 +49,10 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
             }
-        }
+            else if(enemy.tag == "Flyer")
+            {
+                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+            }
     }
 
     void AttackTwo()
@@ -68,7 +71,10 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
             }
-        }
+            else if(enemy.tag == "Flyer")
+            {
+                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+            }
     }
 
     void OnDrawGizmosSelected()
