@@ -53,7 +53,6 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
-        }
     }
 
     void AttackTwo()
@@ -76,7 +75,6 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
-        }
     }
 
     void OnDrawGizmosSelected()
