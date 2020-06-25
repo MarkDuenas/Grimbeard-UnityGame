@@ -9,22 +9,22 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.X))
-        // {
-        //     TakeDamage(20);
-        // }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TakeDamage(20);
+        }
     }
 
-    public void TakeDamage(int damage)
+    void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

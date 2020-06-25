@@ -10,7 +10,6 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = .05f;
     public LayerMask enemyLayers;
-    public int attackDamage = 20;
 
     public float attackRate = 2f;
     float nextAttacktime = 0f;
@@ -40,24 +39,17 @@ public class PlayerCombat : MonoBehaviour
     {
         animator.SetTrigger("Attack");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        // Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRangem, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
-        }
+        // foreach(Collider2D enemy in hitEnemies)
+        // {
+        //     Debug.Log("We Hit");
+        // }
     }
 
     void AttackTwo()
     {
         animator.SetTrigger("AttackTwo");
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
-        }
     }
 
     void OnDrawGizmosSelected()
