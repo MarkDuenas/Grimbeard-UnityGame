@@ -46,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
             }
-            if(enemy.tag == "Flyer")
+            else if(enemy.tag == "Flyer")
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
@@ -65,7 +65,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
             }
-            if(enemy.tag == "Flyer")
+            else if(enemy.tag == "Flyer")
             {
                 enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
             }
