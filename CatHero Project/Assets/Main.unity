@@ -678,7 +678,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 24
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -2769,7 +2769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4}
+  m_AnchoredPosition: {x: 0, y: -89}
   m_SizeDelta: {x: 167.93152, y: 51.81192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &686396437
@@ -4250,7 +4250,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -4514,10 +4514,10 @@ RectTransform:
   m_Father: {fileID: 968385810}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -59}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -82}
+  m_SizeDelta: {x: 121.16748, y: 58.883057}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1173599725
 MonoBehaviour:
@@ -5142,7 +5142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -62}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322667020
@@ -24910,7 +24910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -66}
+  m_AnchoredPosition: {x: 0, y: -83}
   m_SizeDelta: {x: 167.93152, y: 51.81192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564673012
@@ -28008,7 +28008,7 @@ MonoBehaviour:
   dialogBox: {fileID: 1467888064}
   dialogTextFirst: {fileID: 1061852334}
   dialog: Bruh, go home before I Git really MEAN!
-  playerInRange: 1
+  playerInRange: 0
 --- !u!61 &1871248837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28456,6 +28456,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1413941218}
   PlayerDeath: 0
+  player: {fileID: 0}
 --- !u!1 &1960795018
 GameObject:
   m_ObjectHideFlags: 0
