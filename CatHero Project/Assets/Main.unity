@@ -3449,8 +3449,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 20
-  m_WholeNumbers: 0
-  m_Value: 20
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3477,8 +3477,8 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 23130
-    ctime1: 42598
+    ctime0: 21843
+    ctime1: 43686
     ctime2: 65535
     ctime3: 65535
     ctime4: 0
@@ -25791,7 +25791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1940352055}
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 1
   healthBar: {fileID: 1413941218}
   PlayerDeath: 0
 --- !u!1 &1962362495
