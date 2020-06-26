@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = .05f;
     public LayerMask enemyLayers;
     public int attackDamage = 20;
+    public int whirlwindDamage = 2;
     public float attackRate = 2f;
     float nextAttacktime = 0f;
     // Update is called once per frame
@@ -93,15 +94,15 @@ public class PlayerCombat : MonoBehaviour
         {
             if(enemy.tag == "Boss")
             {
-                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+                enemy.GetComponent<BossHealth>().TakeDamage(whirlwindDamage);
             }
             else if(enemy.tag == "Skeleton")
             {
-                enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
+                enemy.GetComponent<SkeletonHealth>().TakeDamage(whirlwindDamage);
             }
             else if(enemy.tag == "Flyer")
             {
-                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+                enemy.GetComponent<FlyerHealth>().TakeDamage(whirlwindDamage);
             }
         }
     }
