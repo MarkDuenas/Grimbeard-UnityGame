@@ -20,7 +20,7 @@ public class potion : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().currentHealth = 100;
+            other.GetComponent<PlayerHealth>().currentHealth = 150;
             healthbar.SetMaxHealth(100);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
