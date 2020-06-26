@@ -25404,7 +25404,7 @@ GameObject:
   - component: {fileID: 1865652956}
   - component: {fileID: 1865652955}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25786,12 +25786,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1940352052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00994807bb10000009994807bb100000, type: 3}
+  m_Script: {fileID: 11500000, guid: 97433f20d3653d041b6ef835fd0aef30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1940352055}
+  animator: {fileID: 0}
   maxHealth: 100
-  currentHealth: 1
+  currentHealth: 0
   healthBar: {fileID: 1413941218}
   PlayerDeath: 0
 --- !u!1 &1962362495
