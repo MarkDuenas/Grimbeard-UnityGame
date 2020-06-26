@@ -8,10 +8,10 @@ public class LossScreen : MonoBehaviour
     // Start is called before the first frame update
     void update()
     {
-        if(FindObjectOfType<GameManager>().LoseSet)
-        {
-            Pause();
-        }
+        // if(FindObjectOfType<GameManager>().LoseSet)
+        // {
+        //     Pause();
+        // }
     }    
     public void Resume()
     {
