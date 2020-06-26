@@ -1682,10 +1682,10 @@ RectTransform:
   m_Father: {fileID: 2061968075}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 784, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791867005
 MonoBehaviour:
@@ -2113,6 +2113,7 @@ MonoBehaviour:
   animator: {fileID: 920206986}
   maxHealth: 500
   currentHealth: 0
+  BossDeath: 0
 --- !u!1 &941560576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,8 +3273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128, y: -26}
-  m_SizeDelta: {x: 255, y: 37.033264}
+  m_AnchoredPosition: {x: 127.75003, y: -26}
+  m_SizeDelta: {x: 255.5, y: 37.033264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413941217
 MonoBehaviour:
@@ -3319,9 +3320,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 20
-  m_WholeNumbers: 1
-  m_Value: 20
+  m_MaxValue: 100
+  m_WholeNumbers: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3349,7 +3350,7 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 23130
-    ctime1: 42598
+    ctime1: 45875
     ctime2: 65535
     ctime3: 65535
     ctime4: 0
@@ -24569,8 +24570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.20999146}
-  m_SizeDelta: {x: -51.577988, y: -4.80188}
+  m_AnchoredPosition: {x: -0.38000488, y: 0.20000076}
+  m_SizeDelta: {x: -50.304413, y: -4.263668}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1794406286
 MonoBehaviour:
@@ -25424,9 +25425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1940352055}
-  maxHealth: 100
+  maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 1413941218}
+  PlayerDeath: 0
 --- !u!1 &1966267497
 GameObject:
   m_ObjectHideFlags: 0
