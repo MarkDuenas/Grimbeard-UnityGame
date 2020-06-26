@@ -20,6 +20,7 @@ public class FlyerAttack : MonoBehaviour
         if(colInfo != null)
         {
             colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            // FindObjectOfType<AudioManager>().Play("LickAttack");
         }
     }
 
