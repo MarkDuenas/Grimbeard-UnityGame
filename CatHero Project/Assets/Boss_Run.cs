@@ -8,7 +8,7 @@ public class Boss_Run : StateMachineBehaviour
 
     public float attackRange = 2f;
 
-    public int nextAttacktime = 50;
+    public int nextAttacktime = 100;
     public int attackTimer = 0;
 
     public int distance = 20;
