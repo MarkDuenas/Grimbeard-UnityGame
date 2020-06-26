@@ -1177,6 +1177,36 @@ MonoBehaviour:
     volume: 0.16
     pitch: 1
     source: {fileID: 0}
+  - name: AxeSwing
+    clip: {fileID: 8300000, guid: 2873d3f0ea5ec1d49ac9f1c9b25aa1e1, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: MinotaurGrowl
+    clip: {fileID: 8300000, guid: 01895d64772a0e644bf2967e392f8bb4, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: MinotaurRoar
+    clip: {fileID: 8300000, guid: a194704509b77794dbef06fcbeec661c, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleGrunt
+    clip: {fileID: 8300000, guid: 7bcdc8bb81c289346a28a7c06cd1bed5, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: BoneBreak
+    clip: {fileID: 8300000, guid: ddf822887d34ed8469b663b01d69d557, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 7b2ef35d482bbeb4cb9a6be04f50ded0, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &1533951359
 GameObject:
   m_ObjectHideFlags: 0
