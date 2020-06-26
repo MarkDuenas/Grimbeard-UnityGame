@@ -19,7 +19,7 @@ public class LoseScreenActivate : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        FindObjectOfType<GameManager>().Win();
+        FindObjectOfType<GameManager>().Loss();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
