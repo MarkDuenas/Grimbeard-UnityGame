@@ -30,6 +30,12 @@ public class PlayerCombat : MonoBehaviour
                 AttackTwo();
                 nextAttacktime = Time.time + 1f/ attackRate;
             }
+            else if(Input.GetKey("r") )
+            {
+                WhirlWind();
+                animator.SetTrigger("WhirlWind");
+                // nextAttacktime = Time.time + 1f/ attackRate;
+            }
         }
     }
 
@@ -59,6 +65,27 @@ public class PlayerCombat : MonoBehaviour
     void AttackTwo()
     {
         animator.SetTrigger("AttackTwo");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            if(enemy.tag == "Boss")
+            {
+                enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+            }
+            else if(enemy.tag == "Skeleton")
+            {
+                enemy.GetComponent<SkeletonHealth>().TakeDamage(attackDamage);
+            }
+            else if(enemy.tag == "Flyer")
+            {
+                enemy.GetComponent<FlyerHealth>().TakeDamage(attackDamage);
+            }
+        }
+    }
+    void WhirlWind()
+    {
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
