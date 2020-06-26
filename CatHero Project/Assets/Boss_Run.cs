@@ -12,7 +12,6 @@ public class Boss_Run : StateMachineBehaviour
     public int attackTimer = 0;
 
     public int distance = 20;
-
     Transform player;
     Rigidbody2D rb;
     Boss boss;
@@ -32,14 +31,14 @@ public class Boss_Run : StateMachineBehaviour
         boss.LookAtPlayer();
 
         Vector2 target = new Vector2(player.position.x, rb.position.y);
-        if(Vector2.Distance(player.position, rb.position) <= distance)
+        if(Vector2.Distance(player.position, rb.position) <= distance && player.GetComponent<PlayerHealth>().currentHealth >= 0)
         {
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
         }
 
 
-        if(Vector2.Distance(player.position, rb.position) <= attackRange)
+        if(Vector2.Distance(player.position, rb.position) <= attackRange && player.GetComponent<PlayerHealth>().currentHealth >= 0)
         {
             attackTimer += 1;
             if(attackTimer == nextAttacktime)
@@ -48,8 +47,12 @@ public class Boss_Run : StateMachineBehaviour
                 attackTimer = 0;
             }
 
-            }
         }
+        if(player.GetComponent<PlayerHealth>().currentHealth <= 0)
+        {
+            animator.SetTrigger("Taunt");
+        }
+    }
 
             
                 
