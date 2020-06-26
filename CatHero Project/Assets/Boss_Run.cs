@@ -12,6 +12,8 @@ public class Boss_Run : StateMachineBehaviour
     public int attackTimer = 0;
 
     public int distance = 20;
+    public bool playing = false;
+
     Transform player;
     Rigidbody2D rb;
     Boss boss;
@@ -29,16 +31,16 @@ public class Boss_Run : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.LookAtPlayer();
-
         Vector2 target = new Vector2(player.position.x, rb.position.y);
-        if(Vector2.Distance(player.position, rb.position) <= distance && player.GetComponent<PlayerHealth>().currentHealth >= 0)
+        if(Vector2.Distance(player.position, rb.position) <= distance)
         {
+            MusicCheck();
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
         }
 
 
-        if(Vector2.Distance(player.position, rb.position) <= attackRange && player.GetComponent<PlayerHealth>().currentHealth >= 0)
+        if(Vector2.Distance(player.position, rb.position) <= attackRange)
         {
             attackTimer += 1;
             if(attackTimer == nextAttacktime)
@@ -47,14 +49,19 @@ public class Boss_Run : StateMachineBehaviour
                 attackTimer = 0;
             }
 
+            }
         }
-        if(player.GetComponent<PlayerHealth>().currentHealth <= 0)
-        {
-            animator.SetTrigger("Taunt");
-        }
-    }
 
-            
+        void MusicCheck()
+        {
+            if(!playing)
+            {
+                FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+                FindObjectOfType<AudioManager>().Play("BossBattle");
+                playing = true;
+
+            }
+        }
                 
                 
                     

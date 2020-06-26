@@ -1172,6 +1172,11 @@ MonoBehaviour:
     volume: 0.16
     pitch: 1
     source: {fileID: 0}
+  - name: BossBattle
+    clip: {fileID: 8300000, guid: db7b16daef0ed26449816a2af3d0073c, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &1533951359
 GameObject:
   m_ObjectHideFlags: 0
