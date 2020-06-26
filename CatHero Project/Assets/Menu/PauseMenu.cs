@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
         FindObjectOfType<AudioManager>().Play("IntroMusic");
+        FindObjectOfType<AudioManager>().Stop("BossBattle");
     }
     public void QuitGame()
     {

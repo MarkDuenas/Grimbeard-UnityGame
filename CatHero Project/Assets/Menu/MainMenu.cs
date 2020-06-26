@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         FindObjectOfType<AudioManager>().Stop("IntroMusic");
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
-        
+        FindObjectOfType<AudioManager>().Stop("BossBattle");
     }
 
     public void QuitGame()
