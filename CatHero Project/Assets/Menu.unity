@@ -1214,12 +1214,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: LickAttack
     clip: {fileID: 8300000, guid: 87af228b2b0b49f459355e55f02b29c9, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
   - name: SkeletonDeath
     clip: {fileID: 8300000, guid: c92716105d8773840acbe3b42f334894, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     source: {fileID: 0}
   playing: 0
