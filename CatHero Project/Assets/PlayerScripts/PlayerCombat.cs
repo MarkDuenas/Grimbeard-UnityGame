@@ -37,6 +37,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 WhirlWind();
                 animator.SetTrigger("WhirlWind");
+                
                 // nextAttacktime = Time.time + 1f/ attackRate;
             }
         }

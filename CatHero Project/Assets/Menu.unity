@@ -195,6 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackDamage: 20
+  whirlwindDamage: 2
   attackRate: 2
 --- !u!114 &98259181
 MonoBehaviour:
@@ -1219,7 +1220,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SkeletonDeath
     clip: {fileID: 8300000, guid: c92716105d8773840acbe3b42f334894, type: 3}
-    volume: 0.6
+    volume: 0.35
+    pitch: 1
+    source: {fileID: 0}
+  - name: Cyclone
+    clip: {fileID: 8300000, guid: 5ae3db14eb9f9e747a3ce271bb95fc5f, type: 3}
+    volume: 0.35
     pitch: 1
     source: {fileID: 0}
   playing: 0
