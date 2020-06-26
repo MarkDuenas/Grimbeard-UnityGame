@@ -23,10 +23,10 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(20);
         }
-        if (PlayerDeath)
-        {
-            FindObjectOfType<GameManager>().Loss();
-        }
+        // if (PlayerDeath)
+        // {
+        //     FindObjectOfType<GameManager>().Loss();
+        // }
     }
 
     public void TakeDamage(int damage)
