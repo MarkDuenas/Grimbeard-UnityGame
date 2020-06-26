@@ -1,0 +1,557 @@
+fileFormatVersion: 2
+guid: 9a7a57203a4090545a9892a67db90c5a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3521081694447203800
+    second: objects 1_0
+  - first:
+      213: -5491589657584445201
+    second: objects 1_1
+  - first:
+      213: -2070303183243466755
+    second: objects 1_2
+  - first:
+      213: 2555200976970945634
+    second: objects 1_3
+  - first:
+      213: -2957100030784290276
+    second: objects 1_4
+  - first:
+      213: -2480202468039611683
+    second: objects 1_5
+  - first:
+      213: 8009412304829505483
+    second: objects 1_6
+  - first:
+      213: 1808211770506698806
+    second: objects 1_7
+  - first:
+      213: -4148667895854711244
+    second: objects 1_8
+  - first:
+      213: -4014444783217500743
+    second: objects 1_9
+  - first:
+      213: -7212107252432665747
+    second: objects 1_10
+  - first:
+      213: 1978730519813473559
+    second: objects 1_11
+  - first:
+      213: -943072249400940909
+    second: objects 1_12
+  - first:
+      213: 4024524976310661146
+    second: objects 1_13
+  - first:
+      213: -522356616995393642
+    second: objects 1_14
+  - first:
+      213: 811733727695040751
+    second: objects 1_15
+  - first:
+      213: -7127668225078506856
+    second: objects 1_16
+  - first:
+      213: 1309781382944145376
+    second: objects 1_17
+  - first:
+      213: -3072943869567419671
+    second: objects 1_18
+  - first:
+      213: 3841717892524712857
+    second: objects 1_19
+  - first:
+      213: -2704583471690223604
+    second: objects 1_20
+  - first:
+      213: 2309467146372290495
+    second: objects 1_21
+  - first:
+      213: -9011384597312554050
+    second: objects 1_22
+  - first:
+      213: 4223983310006287054
+    second: objects 1_23
+  - first:
+      213: -8977847371463731393
+    second: objects 1_24
+  - first:
+      213: 8942819405117418368
+    second: objects 1_25
+  - first:
+      213: -5577610025947894767
+    second: objects 1_26
+  - first:
+      213: 3752696774992331427
+    second: objects 1_27
+  - first:
+      213: -2986017352355168090
+    second: objects 1_28
+  - first:
+      213: -7347608391010970276
+    second: objects 1_29
+  - first:
+      213: 9114024191945982647
+    second: objects 1_30
+  - first:
+      213: -1118172764530066476
+    second: objects 1_31
+  - first:
+      213: 4560364229348500376
+    second: objects 1_32
+  - first:
+      213: -5787659201581859876
+    second: objects 1_33
+  - first:
+      213: -277257954126709793
+    second: objects 1_34
+  - first:
+      213: -5139083204729251952
+    second: objects 1_35
+  - first:
+      213: -3116935468737208855
+    second: objects 1_36
+  - first:
+      213: 6628403929350427073
+    second: objects 1_37
+  - first:
+      213: -147651002297371245
+    second: objects 1_38
+  - first:
+      213: -7905688621888343613
+    second: objects 1_39
+  - first:
+      213: -8403918476940415590
+    second: objects 1_40
+  - first:
+      213: 4033666381727994819
+    second: objects 1_41
+  - first:
+      213: -5202495771372247420
+    second: objects 1_42
+  - first:
+      213: 4968620852446714233
+    second: objects 1_43
+  - first:
+      213: -8964229609167652789
+    second: objects 1_44
+  - first:
+      213: 2065979592064822452
+    second: objects 1_45
+  - first:
+      213: -9215486148414239879
+    second: objects 1_46
+  - first:
+      213: 8165644856272640153
+    second: objects 1_47
+  - first:
+      213: -4015775733973228317
+    second: objects 1_48
+  - first:
+      213: -6581580104173830307
+    second: objects 1_49
+  - first:
+      213: -3828914558081943175
+    second: objects 1_50
+  - first:
+      213: -8238067632146077258
+    second: objects 1_51
+  - first:
+      213: -9124954444701425357
+    second: objects 1_52
+  - first:
+      213: -5330272126218762927
+    second: objects 1_53
+  - first:
+      213: 4887609697223411498
+    second: objects 1_54
+  - first:
+      213: 250973924674318114
+    second: objects 1_55
+  - first:
+      213: 89251717027419469
+    second: objects 1_56
+  - first:
+      213: -3238649372133632020
+    second: objects 1_57
+  - first:
+      213: -6667567801760870119
+    second: objects 1_58
+  - first:
+      213: -1767779363445197409
+    second: objects 1_59
+  - first:
+      213: 2040881053326398613
+    second: objects 1_60
+  - first:
+      213: -736962297685254561
+    second: objects 1_61
+  - first:
+      213: 6077566685841809055
+    second: objects 1_62
+  - first:
+      213: 1246588099384932625
+    second: objects 1_63
+  - first:
+      213: -8013064545990010144
+    second: objects 1_64
+  - first:
+      213: -7186057404005050881
+    second: objects 1_65
+  - first:
+      213: -7876423682743535025
+    second: objects 1_66
+  - first:
+      213: -9154850257555369895
+    second: objects 1_67
+  - first:
+      213: 1352600037239215736
+    second: objects 1_68
+  - first:
+      213: 7497464683243034500
+    second: objects 1_69
+  - first:
+      213: -7908354431626368325
+    second: objects 1_70
+  - first:
+      213: 1148669641918482956
+    second: objects 1_71
+  - first:
+      213: -7138262616417411366
+    second: objects 1_72
+  - first:
+      213: -2484521621707231269
+    second: objects 1_73
+  - first:
+      213: -2593959932387253320
+    second: objects 1_74
+  - first:
+      213: -6824894617969601379
+    second: objects 1_75
+  - first:
+      213: 7662718377368259655
+    second: objects 1_76
+  - first:
+      213: 940175965301993243
+    second: objects 1_77
+  - first:
+      213: -8120430697713757289
+    second: objects 1_78
+  - first:
+      213: 6356894606833187544
+    second: objects 1_79
+  - first:
+      213: 5834006833188799093
+    second: objects 1_80
+  - first:
+      213: 1969223517815344034
+    second: objects 1_81
+  - first:
+      213: -7715002890510232401
+    second: objects 1_82
+  - first:
+      213: -5373286018157677982
+    second: objects 1_83
+  - first:
+      213: -4230974108222716549
+    second: objects 1_84
+  - first:
+      213: 2024366249667934108
+    second: objects 1_85
+  - first:
+      213: -1844331073536659850
+    second: objects 1_86
+  - first:
+      213: 5730513134740925561
+    second: objects 1_87
+  - first:
+      213: 8959918327823021179
+    second: objects 1_88
+  - first:
+      213: -3771513266069207094
+    second: objects 1_89
+  - first:
+      213: -7168176425223456206
+    second: objects 1_90
+  - first:
+      213: -7375068524403290779
+    second: objects 1_91
+  - first:
+      213: -554961339783957098
+    second: objects 1_92
+  - first:
+      213: 3545507407539982058
+    second: objects 1_93
+  - first:
+      213: 7518066949709827276
+    second: objects 1_94
+  - first:
+      213: -8267363837614248690
+    second: objects 1_95
+  - first:
+      213: 6114815360306626329
+    second: objects 1_96
+  - first:
+      213: 1787213145451923566
+    second: objects 1_97
+  - first:
+      213: 4480253264526565451
+    second: objects 1_98
+  - first:
+      213: 4518196928574631487
+    second: objects 1_99
+  - first:
+      213: -494796115157531280
+    second: objects 1_100
+  - first:
+      213: 980207698658789461
+    second: objects 1_101
+  - first:
+      213: -4096591292390411875
+    second: objects 1_102
+  - first:
+      213: -2780110527028810
+    second: objects 1_103
+  - first:
+      213: 9034953163318137381
+    second: objects 1_104
+  - first:
+      213: -1695062398664287611
+    second: objects 1_105
+  - first:
+      213: 4866032776574436823
+    second: objects 1_106
+  - first:
+      213: 3143151345172391632
+    second: objects 1_107
+  - first:
+      213: -7807437028593529996
+    second: objects 1_108
+  - first:
+      213: -8411749263742819905
+    second: objects 1_109
+  - first:
+      213: 6546297519729946733
+    second: objects 1_110
+  - first:
+      213: -1862925014912954830
+    second: objects 1_111
+  - first:
+      213: -6157277656673689636
+    second: objects 1_112
+  - first:
+      213: -790440298652335053
+    second: objects 1_113
+  - first:
+      213: -133460690698107947
+    second: objects 1_114
+  - first:
+      213: -868479052025885021
+    second: objects 1_115
+  - first:
+      213: 3836504684230568926
+    second: objects 1_116
+  - first:
+      213: -4106816125609815224
+    second: objects 1_117
+  - first:
+      213: 5495882341906740185
+    second: objects 1_118
+  - first:
+      213: -8898684063070684987
+    second: objects 1_119
+  - first:
+      213: -8371655518974934686
+    second: objects 1_120
+  - first:
+      213: 5394098638040454103
+    second: objects 1_121
+  - first:
+      213: 6357443856068477101
+    second: objects 1_122
+  - first:
+      213: 4742496986091911784
+    second: objects 1_123
+  - first:
+      213: -5639047483583602908
+    second: objects 1_124
+  - first:
+      213: 6315188154674525020
+    second: objects 1_125
+  - first:
+      213: -9197937930302357561
+    second: objects 1_126
+  - first:
+      213: 2596441913971839093
+    second: objects 1_127
+  - first:
+      213: -3604977738430050118
+    second: objects 1_128
+  - first:
+      213: -4996243066686183292
+    second: objects 1_129
+  - first:
+      213: -1398765963686247950
+    second: objects 1_130
+  - first:
+      213: -9148536700628942196
+    second: objects 1_131
+  - first:
+      213: 2561354711903714719
+    second: objects 1_132
+  - first:
+      213: 6583360574160662845
+    second: objects 1_133
+  - first:
+      213: 2149230770191444425
+    second: objects 1_134
+  - first:
+      213: -1164984784149326992
+    second: objects 1_135
+  - first:
+      213: -3118897565277511626
+    second: objects 1_136
+  - first:
+      213: 4188152266812018165
+    second: objects 1_137
+  - first:
+      213: 6004182177381368943
+    second: objects 1_138
+  - first:
+      213: -9046838394044091462
+    second: objects 1_139
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: objects 1_0
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 52
+        width: 41
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 13, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a0859bada922fc0800000000000000
+      internalID: -3521081694447203800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
