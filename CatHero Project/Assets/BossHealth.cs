@@ -29,6 +29,8 @@ public class BossHealth : MonoBehaviour
         if (currentHealth <= 160)
         {
             animator.SetBool("IsEnraged", true);
+            FindObjectOfType<AudioManager>().Stop("MinotaurGrowl");
+            FindObjectOfType<AudioManager>().Play("MinotaurRoar");
         }
 
         if(currentHealth <= 0)

@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467777935}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1164,19 +1164,65 @@ MonoBehaviour:
   sounds:
   - name: IntroMusic
     clip: {fileID: 8300000, guid: 10b1afc58fe183a48b92deb909c83f21, type: 3}
-    volume: 0.16
+    volume: 0.14
     pitch: 1
     source: {fileID: 0}
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 0e340a9d1dd6e374faafd533d5cc0145, type: 3}
-    volume: 0.16
+    volume: 0.14
     pitch: 1
     source: {fileID: 0}
   - name: BossBattle
     clip: {fileID: 8300000, guid: db7b16daef0ed26449816a2af3d0073c, type: 3}
+    volume: 0.14
+    pitch: 1
+    source: {fileID: 0}
+  - name: AxeSwing
+    clip: {fileID: 8300000, guid: 2873d3f0ea5ec1d49ac9f1c9b25aa1e1, type: 3}
+    volume: 0.22
+    pitch: 1
+    source: {fileID: 0}
+  - name: MinotaurGrowl
+    clip: {fileID: 8300000, guid: 01895d64772a0e644bf2967e392f8bb4, type: 3}
     volume: 0.16
     pitch: 1
     source: {fileID: 0}
+  - name: MinotaurRoar
+    clip: {fileID: 8300000, guid: a194704509b77794dbef06fcbeec661c, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleGrunt
+    clip: {fileID: 8300000, guid: 7bcdc8bb81c289346a28a7c06cd1bed5, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: BoneBreak
+    clip: {fileID: 8300000, guid: ddf822887d34ed8469b663b01d69d557, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 7b2ef35d482bbeb4cb9a6be04f50ded0, type: 3}
+    volume: 0.16
+    pitch: 1
+    source: {fileID: 0}
+  - name: FlyingDeath
+    clip: {fileID: 8300000, guid: 990947f9ffb2e154fb533fbe65cdc99b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: LickAttack
+    clip: {fileID: 8300000, guid: 87af228b2b0b49f459355e55f02b29c9, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: SkeletonDeath
+    clip: {fileID: 8300000, guid: c92716105d8773840acbe3b42f334894, type: 3}
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+  playing: 0
 --- !u!1 &1533951359
 GameObject:
   m_ObjectHideFlags: 0

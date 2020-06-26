@@ -24,6 +24,7 @@ public class SkeletonHealth : MonoBehaviour
     {
         currentHealth -= damage;
         animator.SetTrigger("TakeDamage");
+        FindObjectOfType<AudioManager>().Play("BoneBreak");
 
 
         if(currentHealth <= 0)

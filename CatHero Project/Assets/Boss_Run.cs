@@ -8,11 +8,11 @@ public class Boss_Run : StateMachineBehaviour
 
     public float attackRange = 2f;
 
-    public int nextAttacktime = 200;
+    public int nextAttacktime = 50;
     public int attackTimer = 0;
 
     public int distance = 20;
-    public bool playing = false;
+    
 
     Transform player;
     Rigidbody2D rb;
@@ -34,7 +34,11 @@ public class Boss_Run : StateMachineBehaviour
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         if(Vector2.Distance(player.position, rb.position) <= distance)
         {
-            MusicCheck();
+            if(!FindObjectOfType<AudioManager>().playing)
+            {
+
+                MusicCheck();
+            }
             Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
         }
@@ -54,11 +58,13 @@ public class Boss_Run : StateMachineBehaviour
 
         void MusicCheck()
         {
-            if(!playing)
+            if(!FindObjectOfType<AudioManager>().playing)
             {
                 FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+                FindObjectOfType<AudioManager>().Play("MinotaurGrowl");
                 FindObjectOfType<AudioManager>().Play("BossBattle");
-                playing = true;
+            
+                FindObjectOfType<AudioManager>().playing = true;
 
             }
         }

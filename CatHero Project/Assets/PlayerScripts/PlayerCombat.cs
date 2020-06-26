@@ -24,12 +24,14 @@ public class PlayerCombat : MonoBehaviour
             {
                 Attack();
                 nextAttacktime = Time.time + 1f/ attackRate;
+                FindObjectOfType<AudioManager>().Play("AxeSwing");
             }
 
             else if(Input.GetMouseButtonDown(1))
             {
                 AttackTwo();
                 nextAttacktime = Time.time + 1f/ attackRate;
+                FindObjectOfType<AudioManager>().Play("AxeSwing");
             }
             else if(Input.GetKey("r") )
             {
