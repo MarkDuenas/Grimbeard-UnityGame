@@ -49,8 +49,8 @@ public class Boss_Run : StateMachineBehaviour
                 attackTimer = 0;
             }
 
-            }
         }
+    }
 
         void MusicCheck()
         {
