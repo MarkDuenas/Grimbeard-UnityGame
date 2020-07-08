@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public bool PlayerDeath = false;
+    public Transform player;
     // Start is called before the first frame update
     public void Start()
     {
@@ -22,6 +23,14 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             TakeDamage(20);
+        }
+        
+        if(GameObject.FindGameObjectWithTag("Player").transform.position.y  < -6f)
+        {
+            // Debug.Log("Dead");
+            currentHealth = 0;
+            healthBar.SetHealth(0);
+            Die();
         }
         // if (PlayerDeath)
         // {

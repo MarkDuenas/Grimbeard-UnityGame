@@ -23,6 +23,7 @@ public class LossScreen : MonoBehaviour
     {
         LossScreenUI.SetActive(true);
         Time.timeScale = 0f;
+        Cursor.visible = true;
         PauseMenu.GameIsPaused = true;
     }
     public void LoadMenu()
